@@ -51,7 +51,7 @@ require("data.php");
 		
 		<!-- superfish -->
 		<link rel="stylesheet" media="screen" href="css/superfish.css" /> 
-		<link rel="stylesheet" media="screen" href="css/superfish-left.css" /> 
+		<!--<link rel="stylesheet" media="screen" href="css/superfish-left.css" />--> 
 		<script type="text/javascript" src="js/superfish-1.4.8/js/hoverIntent.js"></script>
 		<script type="text/javascript" src="js/superfish-1.4.8/js/superfish.js"></script>
 		<script type="text/javascript" src="js/superfish-1.4.8/js/supersubs.js"></script>
@@ -64,7 +64,7 @@ require("data.php");
 		<!-- ENDS poshytip -->
 		
 		<!-- Tweet -->
-		<link rel="stylesheet" href="css/jquery.tweet.css" media="all"  type="text/css"/> 
+		<!--<link rel="stylesheet" href="css/jquery.tweet.css" media="all"  type="text/css"/>--> 
 		<script src="js/tweet/jquery.tweet.js" type="text/javascript"></script> 
 		<!-- ENDS Tweet -->
 		

@@ -11,7 +11,8 @@
     @session_start();
     if (isset($_SESSION["autenticado"])) {
         include("barramenu.php");
-    } else {
+    } 
+//    else {
         ?>
         <!-- Navigation -->					
         <!-- search --><!-- ENDS search -->
@@ -38,7 +39,7 @@
         </div>
         <!-- ENDS Slider -->
         <?php
-    }
+//    }
     ?>
 </div>
 <!-- ENDS HEADER -->
