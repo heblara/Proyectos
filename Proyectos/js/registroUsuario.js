@@ -83,23 +83,23 @@ $(document).ready(function(){
                             $('#id_result_busqueda_usuario').html('<p>No se encontraron coicidencias</p>');
                         }
                     }else{
-                        $alert(data.mensaje,130,200);
+                        $alert('Error',data.mensaje,130,200);
                     }
                 }
             });
         
         }else{
             $('#id_result_busqueda_usuario').html('');
-            $alert('Debe de llenar todos los campos de busqueda',130,200);
+            $alert('Error','Debe de llenar todos los campos de busqueda',150,200);
         }
     });
     
       
     
-    var $alert=function(mensaje,height,width){
+    var $alert=function(title,mensaje,height,width){
         $('#dialog').html('<p>'+mensaje+'</p>');
         $( "#dialog" ).dialog({
-            title       : "Error",                
+            title       : title,                
             height      : height,
             draggable   : false,
             width       : width,
@@ -117,6 +117,96 @@ $(document).ready(function(){
             ]
         });
     }
+    
+    /* EVENTOS DEL FORMULARIO */
+    $('#id_btn_cancel_usuario').click(function(){
+        $('#id_div_form__registrar').hide();
+    });
+    
+    $('#id_btn_clean_usuario').click(function(){
+        $('#id_txt_nick_usuario').val('');
+        $('#id_txt_password_usuario').val('');
+        $('#id_txt_confirm_password_usuario').val('');
+        $('#id_sel_privilegio_usuario').val('');
+        $('#id_ckd_estado_usuario').attr('checked','false');
+    });
+    
+    $('#id_btn_add_usuario').click(function(){
+        if(validar_form()){
+            save_usuario(2);
+        }
+    });
+    
+    $('#id_btn_update_usuario').click(function(){
+
+            save_usuario(3);
+
+    });
+    
+    $('#id_btn_delete_usuario').click(function(){
+        $('#dialog').html('<p>Desea eliminar el usuario?</p>');
+        $( "#dialog" ).dialog({
+            title       : 'Confirmacion',
+            resizable   : false,
+            height      : 120,
+            width       : 200,
+            modal       : true,
+            draggable   : false,
+            buttons: {
+                "Si": function() {
+                    save_usuario(4);
+                    $( this ).dialog( "close" );
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    });
+    
+    var validar_form=function(){
+        $nick=$('#id_txt_nick_usuario').val();
+        $pass=$('#id_txt_password_usuario').val();
+        $confirm_pass=$('#id_txt_confirm_password_usuario').val();
+        $privilegio=$('#id_sel_privilegio_usuario').val();
+        $respuesta=false;
+        //verificacion de campos vacios
+        if($nick=="" || $pass=="" || $confirm_pass=="" || $privilegio==""){
+            $alert('Error','Debe de llenar todos los campos requeridos',130,200);            
+        }else{
+            //verificacion que la contraseña sea igual a la confirmacion            
+            if($pass==$confirm_pass){
+                $respuesta=true;
+            }else{
+                $alert('Error','La contraseña colocada no coicide con la confirmación',150,300);                
+            }
+        }
+        
+        return $respuesta;
+    }
+    
+    
+    var save_usuario=function(estado){
+        $.ajax
+        ({
+            type            :   'POST',
+            url             :   'controlador/registroUsuario.ctrl.php?accion='+estado,
+            data            :   $('#id_registrar_usuario').serialize(), 
+            dataType        :   'json',
+            contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
+            success         :   function(data)
+            {
+                if(data.bandera==1){
+                    $('#id_btn_cancel_usuario').trigger('click');
+                    $alert('Exito',data.mensaje,150,200);                    
+                }else{
+                    $alert('Error',data.mensaje,150,300);
+                }                                    
+            }
+        });        
+    }
+    
+    
 });
 
 var show_information=function(row){
@@ -125,18 +215,27 @@ var show_information=function(row){
     var estado=$(row).parents('tr').find('td').eq(3).html();
     var nombre=$(row).parents('tr').find('td').eq(4).html();
     var nick=$(row).parents('tr').find('td').eq(8).html();
-    
+    //clean de campos
+    $('#id_btn_clean_usuario').trigger('click');
+     
     $('#id_hidden_cod_empleado').val(id);
     $('#id_sel_privilegio_usuario').val(idPrivilegio);
-    $('#id_txt_nombre_empleado_usuario').val(nombre);
-    console.log(nick);
+    $('#id_txt_nombre_empleado_usuario').val(nombre);    
     if(nick!='Sin usuario'){
         $('#id_txt_nick_usuario').val(nick);
-    }
-    if(estado=='1'){
-        $('#id_ckd_estado_usuario').attr('checked','true');
+        $('#id_btn_update_usuario').show();
+        $('#id_btn_delete_usuario').show();
+        $('#id_btn_add_usuario').hide();
     }else{
-        $('#id_ckd_estado_usuario').attr('checked','false');
+        $('#id_btn_add_usuario').show();
+        $('#id_btn_update_usuario').hide();
+        $('#id_btn_delete_usuario').hide();        
+    }
+    
+    if(estado=='1'){        
+        $('#id_ckd_estado_usuario').attr('checked','true');
+    }else{        
+        $('#id_ckd_estado_usuario').removeAttr('checked');
     }
     
     $('#id_div_form__registrar').show();    
