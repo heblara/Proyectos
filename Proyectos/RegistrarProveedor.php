@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/jquery-ui.css" />        
         <script src="js/jquery-1.9.1.js"></script>
         <script src="js/jquery-ui.js"></script>        
-        <script src="js/registroUsuario.js"></script>                
+        <script src="js/registroProveedor.js"></script>                
         <?php
         include("header.php");
         require("data.php");
@@ -39,99 +39,79 @@
             <!-- FOOTER -->
             <div id="footer">
                 <div id="content_form">
-                    <h2>Registros de Usuarios</h2>
+                    <h2>Registros de Proveedores</h2>
                     <div id="id_div_form_buscar">
                         <form id="id_form_buscar_usuario" class="form-style">
                             <table width="100%" >
                                 <tr>
-                                    <td width="18%">Buscar empleado por:</td>
+                                    <td width="18%">Buscar proveedor por:</td>
                                     <td width="10%">
-                                        <select id="id_sel_buscar_empleado" name="sel_buscar_empleado">
+                                        <select id="id_sel_buscar_proveedor" name="sel_buscar_proveedor">
                                             <option value="">Seleccione...</option>
-                                            <option value="Apellidos">Apellido</option>
-                                            <option value="Nombres">Nombre</option>
-                                            <option value="DUI">DUI</option>
+                                            <option value="NombreProveedor">Nombre</option>                                            
                                             <option value="NIT">NIT</option>
                                         </select>
                                     </td>
                                     <td width="50%">
-                                        <input type="text" id="id_txt_texto_empleado" name="txt_texto_empleado">
+                                        <input type="text" id="id_txt_texto_proveedor" name="txt_texto_proveedor">
                                     </td>
                                     <td width="5%" align="right">
-                                        <input type="button" id="id_btn_buscar_empleado" name="btn_buscar_empleado" value="Buscar">
+                                        <input type="button" id="id_btn_buscar_proveedor" name="btn_buscar_proveedor" value="Buscar">
                                     </td>
                                     <td width="17%"></td>
                                 </tr>
                             </table>
                         </form>
-                        <div id="id_result_busqueda_usuario" align="center"></div>
+                        <div id="id_result_busqueda_proveedor" align="center"></div>
                     </div>
-                    <div id="id_div_form__registrar" style="display: none">
+                    <div id="id_div_form_registrar">
 
-                        <form id="id_registrar_usuario" class="form-style">
+                        <form id="id_registrar_proveedor" class="form-style">
                             <table width="100%">
                                 <tr>
-                                    <td width="25%">Nombre de empleado:</td>
+                                    <td width="25%">Nombre de Proveedor (*):</td>
                                     <td width="45%">
-                                        <input type="hidden" id="id_hidden_cod_empleado" name="hidden_cod_empleado">
-                                        <input type="text" id="id_txt_nombre_empleado_usuario" name="txt_nombre_empleado_usuario" readonly="true">
+                                        <input type="hidden" id="id_hidden_cod_proveedor" name="hidden_cod_proveedor">
+                                        <input type="text" id="id_txt_nombre_proveedor" name="txt_nombre_proveedor">
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre de usuario (*):</td>
+                                    <td>NIT (*):</td>
                                     <td>
-                                        <input type="text" id="id_txt_nick_usuario" name="txt_nick_usuario">
+                                        <input type="text" id="id_txt_nit_usuario" name="txt_nit_usuario">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td>Contrase&ntilde;a (*):</td>
+                                    <td>Razon Social:</td>
                                     <td>
-                                        <input type="password" id="id_txt_password_usuario" name="txt_password_usuario">
+                                        <textarea id="id_texta_razon_proveedor" name="texta_razon_proveedor"></textarea>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td>Confirmacion de Contrase&ntilde;a (*):</td>
+                                    <td>Direccion (*):</td>
                                     <td>
-                                        <input type="password" id="id_txt_confirm_password_usuario" name="txt_confirm_password_usuario">
+                                        <textarea id="id_texta_direccion_proveedor" name="texta_direccion_proveedor"></textarea>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td>Privilegios (*):</td>
+                                    <td>Telefonos (*):</td>
                                     <td>
-                                        <select id="id_sel_privilegio_usuario" name="sel_privilegio_usuario">
-                                            <option value="">Seleccione..</option>
-                                            <?php
-                                            $query = mysql_query("SELECT * FROM nivelconfianza ORDER BY Descripcion ASC", $connection);
-
-                                            while ($row = mysql_fetch_array($query)) {
-                                                ?>
-                                                <option value="<?php echo $row['idNivelConfianza']; ?>"><?php echo $row['Descripcion']; ?></option>
-                                                <?php
-                                            }
-                                            ?>                                       
-                                        </select>
+                                        <textarea id="id_texta_telefonos_proveedor" name="texta_telefonos_proveedor"></textarea>
                                     </td>
                                     <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Estado Activo:</td>
-                                    <td>
-                                        <input type="checkbox" id="id_ckd_estado_usuario" name="ckd_estado_usuario">
-                                    </td>
-                                    <td></td>
-                                </tr>
+                                </tr>                                
                                 <tr>
                                     <td></td>
                                     <td align="right">                                        
-                                        <input type="button" id="id_btn_add_usuario" name="btn_add_usuario" value="Agregar">
-                                        <input type="button" id="id_btn_update_usuario" name="btn_update_usuario" value="Modificar" style="display: none">
-                                        <input type="button" id="id_btn_delete_usuario" name="btn_delete_usuario" value="Eliminar" style="display: none">
-                                        <input type="button" id="id_btn_clean_usuario" name="btn_clean_usaurio" value="Limpiar">
-                                        <input type="button" id="id_btn_cancel_usuario" name="btn_cancel_usaurio" value="Cancelar">
+                                        <input type="button" id="id_btn_add_proveedor" name="btn_add_proveedor" value="Agregar">
+                                        <input type="button" id="id_btn_update_proveedor" name="btn_update_proveedor" value="Modificar" style="display: none">
+                                        <input type="button" id="id_btn_delete_proveedor" name="btn_delete_proveedor" value="Eliminar" style="display: none">
+                                        <input type="button" id="id_btn_clean_proveedor" name="btn_clean_proveedor" value="Limpiar">
+                                        <input type="button" id="id_btn_cancel_proveedor" name="btn_cancel_proveedor" value="Cancelar" style="display: none">
                                     </td>
                                     <td></td>
                                 </tr>

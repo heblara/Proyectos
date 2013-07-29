@@ -7,7 +7,7 @@
             <li><a href="AgregarProyectos.php"><span>Proyecto</span></a></li>
             <li><a href="AgregarEntrada.php"><span>Nueva Entrada</span></a></li>
             <li><a href="AgregarEntrada.php"><span>Nuevos Reportes</span></a></li>
-            <li><a href="AgregarEntrada.php"><span>Nuevo Proveedor</span></a></li>
+            <li><a href="RegistrarProveedor.php"><span>Nuevo Proveedor</span></a></li>
             <li><a href="AgregarEntrada.php"><span>Nueva Unidad</span></a></li>
         </ul>
     </li>
