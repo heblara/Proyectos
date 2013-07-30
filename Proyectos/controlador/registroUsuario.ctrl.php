@@ -13,6 +13,7 @@ switch ($accion) {
     case 1: //buscar personal
         $opc = isset($_POST['sel_buscar_empleado']) ? $_POST['sel_buscar_empleado'] : '';
         $texto = isset($_POST['txt_texto_empleado']) ? $_POST['txt_texto_empleado'] : '';
+        $array_data = array();
         if ($opc != '' && $texto != '') {
             $sql = "SELECT a.idPersonal, concat( a.nombres, ' ', a.apellidos ) nom, ifnull( b.idNivelConfianza, '' ) idNivel, ";
             $sql.="ifnull( b.Usuario, '' ) user, ifnull( b.Contrasena, '' ) pass, IF(b.Activo=0, 0, IF(b.Activo=1,1,''))  estado, ";
@@ -93,7 +94,7 @@ switch ($accion) {
             }
 
             if ($nick <> "") {
-                $campos[$i] = "Usuario='" . $nick."'";
+                $campos[$i] = "Usuario='" . $nick . "'";
                 $i++;
             }
             if ($contrasena <> "") {
@@ -110,7 +111,7 @@ switch ($accion) {
                 $sql_query.=$value . ",";
             }
 
-            $sql.=substr($sql_query,0,-1) . " where idPersonal=" . $idPersonal;
+            $sql.=substr($sql_query, 0, -1) . " where idPersonal=" . $idPersonal;
             $respuesta = mysql_query($sql, $connection);
             if ($respuesta) {
                 $mensaje = "USUARIO MODIFICADO";
@@ -135,7 +136,7 @@ switch ($accion) {
             $mensaje = "USUARIO ELIMINADO";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR AL USUARIO. INTENTE DE NUEVO " . $sql;
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR AL USUARIO. INTENTE DE NUEVO";
             $bandera = 0;
         }
 

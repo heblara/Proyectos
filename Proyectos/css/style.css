@@ -1283,7 +1283,9 @@ h6{ font-size: 20px; }
     font-size: 11px;
 }
 
-.ui-dialog-titlebar-close { display: none }
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
 
 .ui-widget{
     font-size: 12px;

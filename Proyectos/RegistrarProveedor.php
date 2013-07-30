@@ -9,7 +9,6 @@
         <script src="js/registroProveedores.js"></script>                
         <?php
         include("header.php");
-        require("data.php");
         ?>
 
         <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">

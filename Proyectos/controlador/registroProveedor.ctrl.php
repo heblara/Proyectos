@@ -12,9 +12,10 @@ $telefonos = isset($_POST['texta_telefonos_proveedor']) ? $_POST['texta_telefono
 
 
 switch ($accion) {
-    case 1: //buscar personal
+    case 1: //buscar proveedor
         $opc = isset($_POST['sel_buscar_proveedor']) ? $_POST['sel_buscar_proveedor'] : '';
         $texto = isset($_POST['txt_texto_proveedor']) ? $_POST['txt_texto_proveedor'] : '';
+        $array_data = array();
         if ($opc != '' && $texto != '') {
             $sql = "SELECT * FROM proveedores ";
             $sql.="WHERE " . $opc . " like '%" . $texto . "%' ORDER BY NombreProveedor ASC";
@@ -63,7 +64,7 @@ switch ($accion) {
 
         break;
 
-    case 3: //modificando al usuario
+    case 3: //modificando al proveedor
         $sql = "UPDATE proveedores SET NombreProveedor='" . $nombre . "', NIT='" . $nit . "',";
 
         if ($razon <> "") {
@@ -90,8 +91,8 @@ switch ($accion) {
         $sql = "SELECT COUNT(*) total from entradas where idProveedor=" . $cod_proveedor;
         $query = mysql_query($sql, $connection);
         $row = mysql_fetch_array($query);
-        if ($row['total']==0) {
-            //eliminando al asuario
+        if ($row['total'] == 0) {
+            //eliminando al proveedor
             $sql = "DELETE FROM proveedores where idProveedor=" . $cod_proveedor;
             $respuesta = mysql_query($sql, $connection);
             if ($respuesta) {
@@ -105,10 +106,9 @@ switch ($accion) {
             $mensaje = "NO SE PUEDE ELIMINAR EL PROVEEDOR PORQUE EXISTEN REGISTROS QUE DEPENDE DE EL";
             $bandera = 0;
         }
-
-
         $jsonData["mensaje"] = $mensaje;
         $jsonData["bandera"] = $bandera;
+
         break;
 }
 

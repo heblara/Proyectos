@@ -112,6 +112,7 @@ $(document).ready(function(){
             width       : width,
             modal       : true,              
             resizable   : false,
+            dialogClass : "no-close",
             show        :'scale',
             hide        :'explode',
             buttons: [

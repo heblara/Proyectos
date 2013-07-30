@@ -104,6 +104,7 @@ $(document).ready(function(){
             width       : width,
             modal       : true,              
             resizable   : false,
+            dialogClass : "no-close",
             show        :'scale',
             hide        :'explode',
             buttons: [
@@ -174,10 +175,12 @@ $(document).ready(function(){
     });
         
     $('#id_btn_cancel_proveedor').click(function(){
+        $('#id_btn_clean_proveedor').trigger('click');
         $('#id_btn_cancel_proveedor').hide();
         $('#id_btn_delete_proveedor').hide();
         $('#id_btn_update_proveedor').hide();
-        $('id_btn_add_proveedor').show();
+        $('#id_btn_add_proveedor').show();
+        $('#id_btn_clean_proveedor').show();
     });
     
     $('#id_btn_clean_proveedor').click(function(){
@@ -249,7 +252,7 @@ $(document).ready(function(){
             success         :   function(data)
             {
                 if(data.bandera==1){
-                    $('#id_btn_clean_proveedor').trigger('click');
+                   $('#id_btn_cancel_unidad').trigger('click');
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);
@@ -283,7 +286,7 @@ var show_information=function(row){
     $('#id_btn_update_proveedor').show();
     $('#id_btn_delete_proveedor').show();
     $('#id_btn_add_proveedor').hide();
-        
+        $('#id_btn_clean_proveedor').show();
     $('#id_table_proveedor').hide();
     
     $( '#id_result_busqueda_proveedor' ).dialog( "close" );
