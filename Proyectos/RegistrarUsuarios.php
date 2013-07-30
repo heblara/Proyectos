@@ -64,7 +64,7 @@
                                 </tr>
                             </table>
                         </form>
-                        <div id="id_result_busqueda_usuario" align="center"></div>
+                        <div id="id_result_busqueda_usuario" align="center" style="overflow-y:auto; "></div>
                     </div>
                     <div id="id_div_form__registrar" style="display: none">
 

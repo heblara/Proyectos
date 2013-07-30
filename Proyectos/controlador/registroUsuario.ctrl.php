@@ -116,7 +116,7 @@ switch ($accion) {
                 $mensaje = "USUARIO MODIFICADO";
                 $bandera = 1;
             } else {
-                $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR AL NUEVO USUARIO. INTENTE DE NUEVO.";
+                $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ACTUALIZAR AL USUARIO. INTENTE DE NUEVO.";
                 $bandera = 0;
             }
         } else {
@@ -135,7 +135,7 @@ switch ($accion) {
             $mensaje = "USUARIO ELIMINADO";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR AL NUEVO USUARIO. INTENTE DE NUEVO " . $sql;
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR AL USUARIO. INTENTE DE NUEVO " . $sql;
             $bandera = 0;
         }
 

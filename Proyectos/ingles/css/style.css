@@ -52,13 +52,13 @@ body {
 	position: relative;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	-webkit-border-radius: 10px;        
 }
 
 #content{
-	min-height: 400px;
-	overflow: hidden;
-	margin-bottom: 40px;
+	/*min-height: 400px;*/
+	/*overflow: hidden;*/
+	margin-top: 10px;
 }
 
 #footer{
@@ -152,7 +152,7 @@ body.home #header #headline{
 }
 
 body.home #content{
-	padding-top: 250px;
+	/*padding-top: 250px;*/
 }
 
 #headline a{

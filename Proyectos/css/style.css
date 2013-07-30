@@ -1244,9 +1244,14 @@ h6{ font-size: 20px; }
 
 
 #content_form{
+    position: relative;
     margin-top: 80px;
     /*margin-left: 120px;*/
     height: 500px;  
+}
+
+#bottom{
+    position: relative;
 }
 
 .form-style input[type=text],
@@ -1296,8 +1301,5 @@ h6{ font-size: 20px; }
 .even{
     background-color: #F2F2F2;    
 }
-
-
-
 
 

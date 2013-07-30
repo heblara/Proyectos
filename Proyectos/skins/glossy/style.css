@@ -141,4 +141,8 @@ ul.tabs li.current a {
 	-webkit-border-radius: 10px;
 }
 
+#contents{
+    position:relative;
+}
+
 

@@ -3,8 +3,15 @@ $(document).ready(function(){
         var $id_sel_buscar_empleado     =       $('#id_sel_buscar_empleado').val();
         var $id_txt_texto_empleado      =       $('#id_txt_texto_empleado').val();
         $('#id_div_form__registrar').hide();  
-        $('#id_result_busqueda_usuario').html('<img src="images/ajax-loader.gif">');
+        
         if($id_sel_buscar_empleado!="" && $id_txt_texto_empleado!=""){
+            $('#id_result_busqueda_usuario').html('<img src="images/ajax-loader.gif">');
+            $( "#id_result_busqueda_usuario" ).dialog({
+                height: 350,
+                width: 850,
+                modal: true
+            });
+            
             $.ajax
             ({
                 type            :   'POST',
@@ -139,7 +146,7 @@ $(document).ready(function(){
     
     $('#id_btn_update_usuario').click(function(){
 
-            save_usuario(3);
+        save_usuario(3);
 
     });
     
@@ -240,4 +247,5 @@ var show_information=function(row){
     
     $('#id_div_form__registrar').show();    
     $('#id_table_usuarios').hide();
+    $( '#id_result_busqueda_usuario' ).dialog( "close" );
 } 
