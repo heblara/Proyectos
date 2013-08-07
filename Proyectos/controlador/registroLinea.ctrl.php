@@ -48,6 +48,7 @@ switch ($accion) {
 
         $sql = "insert into Linea (idUnidad,Descripcion) ";
         $sql.="values(" . $idUnidad . ",'" . $descripcion . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "LINEA AGREGADA";
@@ -65,6 +66,7 @@ switch ($accion) {
 
 
         $sql = "UPDATE Lineas SET Descripcion='" . $descripcion . "', idUnidad=" . $idUnidad . " WHERE idLineas=" . $cod_linea;
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "LINEA MODIFICADA";

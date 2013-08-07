@@ -32,7 +32,7 @@ switch ($accion) {
             $jsonData["total_rows"] = $i;
             $jsonData["rows"] = $array_data;
         } else {
-            $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR ".$texto;
+            $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR " . $texto;
             $jsonData["bandera"] = 0;
         }
         break;
@@ -41,6 +41,7 @@ switch ($accion) {
 
         $sql = "insert into Experiencia (Descripcion) ";
         $sql.="values('" . $nombre . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "EXPERIENCIA AGREGADA";
@@ -58,7 +59,7 @@ switch ($accion) {
     case 3: //modificando al experiencia
         $sql = "UPDATE Experiencia SET Descripcion='" . $nombre . "'";
         $sql.="WHERE idExperiencia=" . $cod_experiencia;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "EXPERIENCIA MODIFICADA";

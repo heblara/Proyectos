@@ -32,7 +32,7 @@ switch ($accion) {
             $jsonData["total_rows"] = $i;
             $jsonData["rows"] = $array_data;
         } else {
-            $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR ".$texto;
+            $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR " . $texto;
             $jsonData["bandera"] = 0;
         }
         break;
@@ -41,6 +41,7 @@ switch ($accion) {
 
         $sql = "insert into NivelConfianza (Descripcion) ";
         $sql.="values('" . $nombre . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "PERFIL DE USUARIO AGREGADO";
@@ -58,7 +59,7 @@ switch ($accion) {
     case 3: //modificando al nivel_confianza
         $sql = "UPDATE NivelConfianza SET Descripcion='" . $nombre . "'";
         $sql.="WHERE idNivelConfianza=" . $cod_nivel_confianza;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "PERFIL DE USUARIO MODIFICADO";

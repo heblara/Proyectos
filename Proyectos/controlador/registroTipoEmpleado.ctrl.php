@@ -47,6 +47,7 @@ switch ($accion) {
 
         $sql = "insert into TipoEmpleado (idExperiencia,Descripcion) ";
         $sql.="values(" . $idExperiencia . ",'" . $nombre . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "TIPO DE EMPLEADO AGREGADO";
@@ -64,7 +65,7 @@ switch ($accion) {
     case 3: //modificando al tipo_empleado
         $sql = "UPDATE TipoEmpleado SET Descripcion='" . $nombre . "',idExperiencia=" . $idExperiencia;
         $sql.=" WHERE idTipoEmpleado=" . $cod_tipo_empleado;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "TIPO DE EMPLEADO MODIFICADO";

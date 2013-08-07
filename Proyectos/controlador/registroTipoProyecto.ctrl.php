@@ -10,7 +10,7 @@ $descripcion = isset($_POST['texta_descripcion_tipo_proyecto']) ? $_POST['texta_
 
 /* OPCIONES PARA LAS IMAGENES */
 $destino = str_replace('controlador', 'images', rtrim(dirname($_SERVER['PHP_SELF']), '/\\')) . '/proyectos/';
-$server = $_SERVER['DOCUMENT_ROOT']  . $destino;
+$server = $_SERVER['DOCUMENT_ROOT'] . $destino;
 $buscarCaracteres = array(' ', 'ñ', 'Ñ', 'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'Ü', 'ü');
 $reemplazarCaracteres = array('_', 'n', 'N', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'U', 'u');
 
@@ -59,12 +59,13 @@ switch ($accion) {
             $name_archivo = substr($archivo, 0, -4) . "(" . $date . ")" . substr($archivo, -4);
             $name_dir = $destino . $name_archivo;
         } else {
-            $name_dir = '';            
+            $name_dir = '';
         }
 
 
         $sql = "insert into TipoProyecto (Nombre,Descripcion,Imagen) ";
         $sql.="values('" . $nombre . "','" . $descripcion . "','" . $name_dir . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             if (isset($_FILES['fil_imagen_tipo_proyecto'])) {
@@ -94,7 +95,7 @@ switch ($accion) {
             $name_archivo = substr($archivo, 0, -4) . "(" . $date . ")" . substr($archivo, -4);
             $name_dir = $destino . $name_archivo;
         } else {
-            $name_dir = '';            
+            $name_dir = '';
         }
 
         $sql = "UPDATE TipoProyecto SET Nombre='" . $nombre . "',Descripcion='" . $descripcion . "'";
@@ -102,7 +103,7 @@ switch ($accion) {
             $sql.=",Imagen='" . $name_dir . "'";
         }
         $sql.=" WHERE idTipoProyecto=" . $cod_tipo_proyecto;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             if (isset($_FILES['fil_imagen_tipo_proyecto'])) {
@@ -122,13 +123,13 @@ switch ($accion) {
 
     case 4:
         $sql = "SELECT COUNT(*) total from Proyectos where idTipoProyecto=" . $cod_tipo_proyecto;
-        $query = mysql_query($sql, $connection);        
+        $query = mysql_query($sql, $connection);
         $row = mysql_fetch_array($query);
         if ($row['total'] == 0) {
             //eliminando al tipo_proyecto
             $sql = "DELETE FROM TipoProyecto where idTipoProyecto=" . $cod_tipo_proyecto;
             $respuesta = mysql_query($sql, $connection);
-            if ($respuesta) {                
+            if ($respuesta) {
                 $mensaje = "TIPO DE PROYECTO ELIMINADO";
                 $bandera = 1;
             } else {

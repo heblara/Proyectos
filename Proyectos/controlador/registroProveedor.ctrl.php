@@ -49,6 +49,7 @@ switch ($accion) {
 
         $sql = "insert into Proveedores (NombreProveedor, NIT, RazonSocial, Direccion, Telefonos) ";
         $sql.="values('" . $nombre . "','" . $nit . "','" . $razon . "','" . $direccion . "','" . $telefonos . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "PROVEEDOR AGREGADO";
@@ -67,11 +68,11 @@ switch ($accion) {
         $sql = "UPDATE proveedores SET NombreProveedor='" . $nombre . "', NIT='" . $nit . "',";
 
         if ($razon <> "") {
-            $sql .= "RazonSocial='" . $razon."',";
+            $sql .= "RazonSocial='" . $razon . "',";
         }
         $sql.="Direccion='" . $direccion . "', Telefonos='" . $telefonos . "' ";
         $sql.="WHERE idProveedor=" . $cod_proveedor;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "PROVEEDOR MODIFICADO";

@@ -39,6 +39,7 @@ switch ($accion) {
 
         $sql = "insert into Unidad (Descripcion) ";
         $sql.="values('" . $descripcion . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "UNIDAD AGREGADA";
@@ -56,6 +57,7 @@ switch ($accion) {
 
 
         $sql = "UPDATE Unidad SET Descripcion='" . $descripcion . "' WHERE idUnidad=" . $cod_unidad;
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "UNIDAD MODIFICADA";

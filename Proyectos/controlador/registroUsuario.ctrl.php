@@ -62,6 +62,7 @@ switch ($accion) {
         if ($row['total'] == 0) {
             $sql = "insert into Usuarios (idNivelConfianza, idPersonal, Usuario, Contrasena, Activo) ";
             $sql.="values(" . $idNivelConfianza . "," . $idPersonal . ",'" . $nick . "',md5('" . $contrasena . "')," . $activo . ")";
+            mysql_query("SET NAMES 'utf8'");
             $respuesta = mysql_query($sql, $connection);
             if ($respuesta) {
                 $mensaje = "USUARIO AGREGADO";
@@ -112,6 +113,7 @@ switch ($accion) {
             }
 
             $sql.=substr($sql_query, 0, -1) . " where idPersonal=" . $idPersonal;
+            mysql_query("SET NAMES 'utf8'");
             $respuesta = mysql_query($sql, $connection);
             if ($respuesta) {
                 $mensaje = "USUARIO MODIFICADO";

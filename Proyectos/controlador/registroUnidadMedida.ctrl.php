@@ -41,6 +41,7 @@ switch ($accion) {
 
         $sql = "insert into UnidadesMedida (Descripcion) ";
         $sql.="values('" . $nombre . "')";
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "UNIDAD DE MEDIDA AGREGADA";
@@ -58,7 +59,7 @@ switch ($accion) {
     case 3: //modificando al unidad_medida
         $sql = "UPDATE UnidadesMedida SET Descripcion='" . $nombre . "'";
         $sql.="WHERE idUnidadesMedida=" . $cod_unidad_medida;
-
+        mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
             $mensaje = "UNIDAD DE MEDIDA MODIFICADA";
