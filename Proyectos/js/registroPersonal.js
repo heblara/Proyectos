@@ -437,27 +437,54 @@ $(document).ready(function(){
     
 });
 
-var show_information=function(row){
+var show_information=function(row){                   
     var id=$(row).parents('tr').find('td').eq(1).html();
-    var nombre=$(row).parents('tr').find('td').eq(2).html();
-    var descripcion=$(row).parents('tr').find('td').eq(3).html();
-    var imagen=$(row).parents('tr').find('td').eq(4).html();
+    var id_tipo_empleado=$(row).parents('tr').find('td').eq(2).html();
+    var nombres=$(row).parents('tr').find('td').eq(4).html();
+    var apellidos=$(row).parents('tr').find('td').eq(5).html();
+    var fecha_ingreso=$(row).parents('tr').find('td').eq(6).html();
+    var fecha_nacimiento=$(row).parents('tr').find('td').eq(7).html();
+    var habilidad1=$(row).parents('tr').find('td').eq(8).html();
+    var habilidad2=$(row).parents('tr').find('td').eq(9).html();
+    var habilidad3=$(row).parents('tr').find('td').eq(10).html();
+    var dui=$(row).parents('tr').find('td').eq(11).html();
+    var nit=$(row).parents('tr').find('td').eq(12).html();
+    var pasaporte=$(row).parents('tr').find('td').eq(13).html();
+    var nacionalidad=$(row).parents('tr').find('td').eq(14).html();
+    var afp=$(row).parents('tr').find('td').eq(15).html();
+    var nup=$(row).parents('tr').find('td').eq(16).html();
+    var isss=$(row).parents('tr').find('td').eq(17).html();
+    var salario=$(row).parents('tr').find('td').eq(18).html();
+    var personal=$(row).parents('tr').find('td').eq(19).html();
+    
     
     //clean de campos
     $('#id_btn_clean_personal').trigger('click');
      
     $('#id_hidden_cod_personal').val(id);
-    $('#id_txt_nombre_personal').val(nombre);
-    $('#id_texta_descripcion_personal').val(descripcion);
-    $('#id_div_imagen').html(imagen);
+    $('#id_sel_tipo_empleado_personal').val(id_tipo_empleado);
+    $('#id_txt_nombre_personal').val(nombres);
+    $('#id_txt_apellidos_personal').val(apellidos);
+    $('#id_txt_fecha_ingreso_personal').val(fecha_ingreso);
+    $('#id_txt_fecha_nacimiento_personal').val(fecha_nacimiento);
+    $('#id_txt_dui_personal').val(dui);
+    $('#id_txt_nit_personal').val(nit);        
+    $('#id_txt_pasaporte_personal').val(pasaporte);        
+    $('#id_txt_afp_personal').val(afp);
+    $('#id_txt_nup_personal').val(nup);        
+    $('#id_txt_isss_personal').val(isss);        
+    $('#id_txt_nacionalidad_personal').val(nacionalidad);
+    $('#id_texta_habilidad1_personal').val(habilidad1);
+    $('#id_texta_habilidad2_personal').val(habilidad2);
+    $('#id_texta_habilidad3_personal').val(habilidad3);
+    $('#id_txt_salario_personal').val(salario);
+    $('#id_txt_personal_personal').val(personal);
     
     $('#id_btn_update_personal').show();
     $('#id_btn_delete_personal').show();
     $('#id_btn_add_personal').hide();
     $('#id_btn_clean_personal').show();
     $('#id_table_personal').hide();
-    if(imagen!=""){
-        $('#id_row_imagen').show();
-    }
+    
     $( '#id_result_busqueda_personal' ).dialog( "close" );
 } 

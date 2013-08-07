@@ -99,7 +99,7 @@ switch ($accion) {
 
     case 3: //modificando al personal
 
-        $sql = "UPDATE TipoProyecto SET idTipoEmpleado=" . $sel_tipo_empleado_personal . ",Nombres='" . $txt_nombre_personal . "',";
+        $sql = "UPDATE Personal SET idTipoEmpleado=" . $sel_tipo_empleado_personal . ",Nombres='" . $txt_nombre_personal . "',";
         $sql.="Apellidos='" . $txt_apellidos_personal . "',FechaIngreso='" . $txt_fecha_ingreso_personal . "',";
         $sql.="FechaNacimiento='" . $txt_fecha_nacimiento_personal . "',DUI='" . $txt_dui_personal . "',";
         $sql.="NIT='" . $txt_nit_personal . "',Nacionalidad='" . $txt_nacionalidad_personal . "',";
