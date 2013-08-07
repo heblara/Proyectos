@@ -8,7 +8,7 @@
                     <li><a href="RegistrarUsuarios.php"><span>Usuarios del Sistema</span></a></li>
                 </ul>
             </li>
-
+            <li><a href="RegistrarTipoProyecto.php"><span>Tipo de Proyecto</span></a></li>
             <li><a href="AgregarProyectos.php"><span>Proyecto</span></a></li>
             <li><a href="AgregarEntrada.php"><span>Nueva Entrada</span></a></li>
             <li><a href="AgregarEntrada.php"><span>Nuevos Reportes</span></a></li>

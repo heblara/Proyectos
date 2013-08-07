@@ -6,7 +6,7 @@ $(document).ready(function(){
         var $id_txt_texto_unidad      =       $('#id_txt_texto_unidad').val();
         
         $('#id_btn_clean_unidad').trigger('click');  
-        $('#id_btn_cancel_unidad').trigger('click');  
+        
         
         if($id_txt_texto_unidad!=""){
             $('#id_result_busqueda_unidad').html('<img src="images/ajax-loader.gif">');
@@ -113,8 +113,7 @@ $(document).ready(function(){
     });
     
         
-    $('#id_btn_cancel_unidad').click(function(){
-        $('#id_btn_clean_unidad').trigger('click');
+    $('#id_btn_cancel_unidad').click(function(){        
         $('#id_btn_cancel_unidad').hide();
         $('#id_btn_delete_unidad').hide();
         $('#id_btn_update_unidad').hide();
@@ -123,6 +122,7 @@ $(document).ready(function(){
     
     $('#id_btn_clean_unidad').click(function(){
         $('#id_texta_descripcion_unidad').val('');        
+        $('#id_btn_cancel_unidad').trigger('click');
     });
     
     $('#id_btn_add_unidad').click(function(){
@@ -197,8 +197,7 @@ $(document).ready(function(){
             success         :   function(data)
             {
                 if(data.bandera==1){
-                     $('#id_btn_clean_unidad').trigger('click');                     
-                    $('#id_btn_cancel_unidad').trigger('click');
+                     $('#id_btn_clean_unidad').trigger('click');                                         
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

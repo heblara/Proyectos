@@ -6,8 +6,7 @@ $(document).ready(function(){
         var $id_txt_texto_nivel_confianza      =       $('#id_txt_texto_nivel_confianza').val();
         
         $('#id_btn_clean_nivel_confianza').trigger('click');  
-        $('#id_btn_cancel_nivel_confianza').trigger('click');  
-        
+                
         if($id_txt_texto_nivel_confianza!=""){
             $('#id_result_busqueda_nivel_confianza').html('<img src="images/ajax-loader.gif">');
             
@@ -125,8 +124,7 @@ $(document).ready(function(){
     });
            
         
-    $('#id_btn_cancel_nivel_confianza').click(function(){
-        $('#id_btn_clean_nivel_confianza').trigger('click');
+    $('#id_btn_cancel_nivel_confianza').click(function(){        
         $('#id_btn_cancel_nivel_confianza').hide();
         $('#id_btn_delete_nivel_confianza').hide();
         $('#id_btn_update_nivel_confianza').hide();
@@ -135,7 +133,8 @@ $(document).ready(function(){
     });
     
     $('#id_btn_clean_nivel_confianza').click(function(){
-        $('#id_txt_nombre_nivel_confianza').val('');        
+        $('#id_txt_nombre_nivel_confianza').val('');   
+        $('#id_btn_cancel_nivel_confianza').trigger('click');  
     });
     
     $('#id_btn_add_nivel_confianza').click(function(){
@@ -210,8 +209,7 @@ $(document).ready(function(){
             success         :   function(data)
             {                
                 if(data.bandera==1){
-                    $('#id_btn_clean_nivel_confianza').trigger('click');
-                    $('#id_btn_cancel_nivel_confianza').trigger('click');
+                    $('#id_btn_clean_nivel_confianza').trigger('click');                    
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

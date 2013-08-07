@@ -6,7 +6,7 @@ $(document).ready(function(){
         var $id_sel_buscar_linea     =       $('#id_sel_buscar_linea').val();
         
         $('#id_btn_clean_linea').trigger('click');  
-        $('#id_btn_cancel_linea').trigger('click');  
+        
         
         if($id_txt_texto_linea!="" || $id_sel_buscar_linea!=""){
             $('#id_result_busqueda_linea').html('<img src="images/ajax-loader.gif">');
@@ -117,8 +117,7 @@ $(document).ready(function(){
     });
     
         
-    $('#id_btn_cancel_linea').click(function(){
-        $('#id_btn_clean_linea').trigger('click');
+    $('#id_btn_cancel_linea').click(function(){       
         $('#id_btn_cancel_linea').hide();
         $('#id_btn_delete_linea').hide();
         $('#id_btn_update_linea').hide();
@@ -128,6 +127,7 @@ $(document).ready(function(){
     $('#id_btn_clean_linea').click(function(){
         $('#id_texta_descripcion_linea').val(''); 
         $('#id_sel_unidad_linea').val('');
+        $('#id_btn_cancel_linea').trigger('click');  
     });
     
     $('#id_btn_add_linea').click(function(){
@@ -203,8 +203,7 @@ $(document).ready(function(){
             success         :   function(data)
             {
                 if(data.bandera==1){
-                    $('#id_btn_clean_linea').trigger('click');
-                    $('#id_btn_cancel_linea').trigger('click');
+                    $('#id_btn_clean_linea').trigger('click');                    
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

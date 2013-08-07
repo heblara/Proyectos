@@ -6,7 +6,7 @@ $(document).ready(function(){
         var $id_txt_texto_tipo_empleado      =       $('#id_txt_texto_tipo_empleado').val();
         var $id_sel_buscar_tipo_empleado     =       $('#id_sel_buscar_tipo_empleado').val();   
         $('#id_btn_clean_tipo_empleado').trigger('click');  
-        $('#id_btn_cancel_tipo_empleado').trigger('click');  
+        
         
         if($id_txt_texto_tipo_empleado!="" && $id_sel_buscar_tipo_empleado!=""){
             $('#id_result_busqueda_tipo_empleado').html('<img src="images/ajax-loader.gif">');
@@ -129,8 +129,7 @@ $(document).ready(function(){
     });
            
         
-    $('#id_btn_cancel_tipo_empleado').click(function(){
-        $('#id_btn_clean_tipo_empleado').trigger('click');
+    $('#id_btn_cancel_tipo_empleado').click(function(){        
         $('#id_btn_cancel_tipo_empleado').hide();
         $('#id_btn_delete_tipo_empleado').hide();
         $('#id_btn_update_tipo_empleado').hide();
@@ -141,6 +140,7 @@ $(document).ready(function(){
     $('#id_btn_clean_tipo_empleado').click(function(){
         $('#id_txt_nombre_tipo_empleado').val('');        
         $('#id_sel_experiencia_tipo_empleado').val('');
+        $('#id_btn_cancel_tipo_empleado').trigger('click');  
     });
     
     $('#id_btn_add_tipo_empleado').click(function(){
@@ -215,8 +215,7 @@ $(document).ready(function(){
             success         :   function(data)
             {                
                 if(data.bandera==1){
-                    $('#id_btn_clean_tipo_empleado').trigger('click');
-                    $('#id_btn_cancel_tipo_empleado').trigger('click');
+                    $('#id_btn_clean_tipo_empleado').trigger('click');                    
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

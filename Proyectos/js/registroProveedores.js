@@ -8,7 +8,7 @@ $(document).ready(function(){
         var $id_txt_texto_proveedor      =       $('#id_txt_texto_proveedor').val();
         
         $('#id_btn_clean_proveedor').trigger('click');  
-        $('#id_btn_cancel_proveedor').trigger('click');  
+        
         
         if($id_sel_buscar_proveedor!="" && $id_txt_texto_proveedor!=""){
             $('#id_result_busqueda_proveedor').html('<img src="images/ajax-loader.gif">');
@@ -174,8 +174,7 @@ $(document).ready(function(){
         }
     });
         
-    $('#id_btn_cancel_proveedor').click(function(){
-        $('#id_btn_clean_proveedor').trigger('click');
+    $('#id_btn_cancel_proveedor').click(function(){        
         $('#id_btn_cancel_proveedor').hide();
         $('#id_btn_delete_proveedor').hide();
         $('#id_btn_update_proveedor').hide();
@@ -189,6 +188,7 @@ $(document).ready(function(){
         $('#id_texta_razon_proveedor').val('');        
         $('#id_texta_direccion_proveedor').val('');
         $('#id_texta_telefonos_proveedor').val('');
+        $('#id_btn_cancel_proveedor').trigger('click');  
     });
     
     $('#id_btn_add_proveedor').click(function(){
@@ -265,11 +265,9 @@ $(document).ready(function(){
             dataType        :   'json',
             contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
             success         :   function(data)
-            {
-                //                $('#dialog').dialog('close');
+            {                
                 if(data.bandera==1){
-                    $('#id_btn_clean_proveedor').trigger('click');
-                    $('#id_btn_cancel_proveedor').trigger('click');
+                    $('#id_btn_clean_proveedor').trigger('click');             
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

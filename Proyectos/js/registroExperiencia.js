@@ -6,7 +6,6 @@ $(document).ready(function(){
         var $id_txt_texto_experiencia      =       $('#id_txt_texto_experiencia').val();
         
         $('#id_btn_clean_experiencia').trigger('click');  
-        $('#id_btn_cancel_experiencia').trigger('click');  
         
         if($id_txt_texto_experiencia!=""){
             $('#id_result_busqueda_experiencia').html('<img src="images/ajax-loader.gif">');
@@ -125,8 +124,7 @@ $(document).ready(function(){
     });
            
         
-    $('#id_btn_cancel_experiencia').click(function(){
-        $('#id_btn_clean_experiencia').trigger('click');
+    $('#id_btn_cancel_experiencia').click(function(){        
         $('#id_btn_cancel_experiencia').hide();
         $('#id_btn_delete_experiencia').hide();
         $('#id_btn_update_experiencia').hide();
@@ -135,7 +133,8 @@ $(document).ready(function(){
     });
     
     $('#id_btn_clean_experiencia').click(function(){
-        $('#id_txt_nombre_experiencia').val('');       
+        $('#id_txt_nombre_experiencia').val('');     
+        $('#id_btn_cancel_experiencia').trigger('click');  
     });
     
     $('#id_btn_add_experiencia').click(function(){
@@ -210,8 +209,7 @@ $(document).ready(function(){
             success         :   function(data)
             {                
                 if(data.bandera==1){
-                    $('#id_btn_clean_experiencia').trigger('click');
-                    $('#id_btn_cancel_experiencia').trigger('click');
+                    $('#id_btn_clean_experiencia').trigger('click');                    
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);

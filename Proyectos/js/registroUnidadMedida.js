@@ -6,8 +6,7 @@ $(document).ready(function(){
         var $id_txt_texto_unidad_medida      =       $('#id_txt_texto_unidad_medida').val();
         
         $('#id_btn_clean_unidad_medida').trigger('click');  
-        $('#id_btn_cancel_unidad_medida').trigger('click');  
-        
+                
         if($id_txt_texto_unidad_medida!=""){
             $('#id_result_busqueda_unidad_medida').html('<img src="images/ajax-loader.gif">');
             
@@ -125,8 +124,7 @@ $(document).ready(function(){
     });
            
         
-    $('#id_btn_cancel_unidad_medida').click(function(){
-        $('#id_btn_clean_unidad_medida').trigger('click');
+    $('#id_btn_cancel_unidad_medida').click(function(){        
         $('#id_btn_cancel_unidad_medida').hide();
         $('#id_btn_delete_unidad_medida').hide();
         $('#id_btn_update_unidad_medida').hide();
@@ -135,7 +133,8 @@ $(document).ready(function(){
     });
     
     $('#id_btn_clean_unidad_medida').click(function(){
-        $('#id_txt_nombre_unidad_medida').val('');       
+        $('#id_txt_nombre_unidad_medida').val(''); 
+        $('#id_btn_cancel_unidad_medida').trigger('click');  
     });
     
     $('#id_btn_add_unidad_medida').click(function(){
@@ -210,8 +209,7 @@ $(document).ready(function(){
             success         :   function(data)
             {                
                 if(data.bandera==1){
-                    $('#id_btn_clean_unidad_medida').trigger('click');
-                    $('#id_btn_cancel_unidad_medida').trigger('click');
+                    $('#id_btn_clean_unidad_medida').trigger('click');                    
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);
