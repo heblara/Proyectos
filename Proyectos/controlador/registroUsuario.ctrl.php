@@ -61,7 +61,7 @@ switch ($accion) {
 
         if ($row['total'] == 0) {
             $sql = "insert into Usuarios (idNivelConfianza, idPersonal, Usuario, Contrasena, Activo) ";
-            $sql.="values(" . $idNivelConfianza . "," . $idPersonal . ",'" . $nick . "','" . $contrasena . "'," . $activo . ")";
+            $sql.="values(" . $idNivelConfianza . "," . $idPersonal . ",'" . $nick . "',md5('" . $contrasena . "')," . $activo . ")";
             $respuesta = mysql_query($sql, $connection);
             if ($respuesta) {
                 $mensaje = "USUARIO AGREGADO";
