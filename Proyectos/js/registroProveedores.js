@@ -123,7 +123,7 @@ $(document).ready(function(){
         keypress:function(event){
             var tecla = (document.all) ? event.keyCode : event.which;                              
             if(tecla===0 || tecla===8 || tecla===9) return true;
-            if(14===$(this).val().length)return false;
+            if(250===$(this).val().length)return false;
             var convertirTecla=String.fromCharCode(tecla);
             var patron=/^[A-Za-zñÑáéíóúÁÉÍÓÚ#,.:;-_\s]{1}/;
             return patron.test(convertirTecla);  
@@ -134,7 +134,7 @@ $(document).ready(function(){
         keypress:function(event){
             var tecla = (document.all) ? event.keyCode : event.which;                              
             if(tecla===0 || tecla===8 || tecla===9) return true;
-            if(14===$(this).val().length)return false;
+            if(250===$(this).val().length)return false;
             var convertirTecla=String.fromCharCode(tecla);
             var patron=/^[A-Za-zñÑáéíóúÁÉÍÓÚ#,.:;-_\s]{1}/;
             return patron.test(convertirTecla);  
@@ -215,7 +215,7 @@ $(document).ready(function(){
             buttons: {
                 "Si": function() {
                     save_proveedor(4);
-                    $( this ).dialog( "close" );
+                //                    $( this ).dialog( "close" );
                 },
                 Cancel: function() {
                     $( this ).dialog( "close" );
@@ -240,8 +240,23 @@ $(document).ready(function(){
         return $respuesta;
     }
     
+    var load_servidor=function(){
+        $('#dialog').html('<div align="center"><img src="images/ajax-loader.gif"></div>');
+        $('#dialog').dialog({
+            title:'Esperando respuesta de servidor',
+            height      : 150,
+            width       : 200,
+            dialogClass : "no-close",
+            buttons     :{},
+            modal       : true,
+            draggable   : false,
+            resizable   : false
+        });
+    }
     
     var save_proveedor=function(estado){
+        load_servidor();
+        
         $.ajax
         ({
             type            :   'POST',
@@ -251,8 +266,10 @@ $(document).ready(function(){
             contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
             success         :   function(data)
             {
+                //                $('#dialog').dialog('close');
                 if(data.bandera==1){
-                   $('#id_btn_cancel_unidad').trigger('click');
+                    $('#id_btn_clean_proveedor').trigger('click');
+                    $('#id_btn_cancel_proveedor').trigger('click');
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{
                     $alert('Error',data.mensaje,150,300);
@@ -286,7 +303,7 @@ var show_information=function(row){
     $('#id_btn_update_proveedor').show();
     $('#id_btn_delete_proveedor').show();
     $('#id_btn_add_proveedor').hide();
-        $('#id_btn_clean_proveedor').show();
+    $('#id_btn_clean_proveedor').show();
     $('#id_table_proveedor').hide();
     
     $( '#id_result_busqueda_proveedor' ).dialog( "close" );

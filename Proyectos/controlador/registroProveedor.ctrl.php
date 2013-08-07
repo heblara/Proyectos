@@ -43,7 +43,6 @@ switch ($accion) {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
         }
-        sleep(1);
         break;
 
     case 2: //adicionando un nuevo registro
@@ -68,7 +67,7 @@ switch ($accion) {
         $sql = "UPDATE proveedores SET NombreProveedor='" . $nombre . "', NIT='" . $nit . "',";
 
         if ($razon <> "") {
-            $sql = "RazonSocial=" . $razon;
+            $sql .= "RazonSocial='" . $razon."',";
         }
         $sql.="Direccion='" . $direccion . "', Telefonos='" . $telefonos . "' ";
         $sql.="WHERE idProveedor=" . $cod_proveedor;
@@ -111,6 +110,6 @@ switch ($accion) {
 
         break;
 }
-
+sleep(1);
 echo json_encode($jsonData);
 ?>

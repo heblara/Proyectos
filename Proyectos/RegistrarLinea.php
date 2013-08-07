@@ -106,7 +106,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"><span style="color: #FFD800">Son campos requeridos (*) al momento de registrar un nuevo usuario</span></td>
+                                    <td colspan="3"><span style="color: #FFD800">Son campos requeridos (*)</span></td>
                                 </tr>
                             </table>                        
                         </form>                        

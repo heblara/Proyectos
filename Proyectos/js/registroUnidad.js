@@ -171,8 +171,22 @@ $(document).ready(function(){
         return $respuesta;
     }
     
+    var load_servidor=function(){
+        $('#dialog').html('<div align="center"><img src="images/ajax-loader.gif"></div>');
+        $('#dialog').dialog({
+            title:'Esperando respuesta de servidor',
+            height      : 150,
+            width       : 200,
+            dialogClass : "no-close",
+            buttons     :{},
+            modal       : true,
+            draggable   : false,
+            resizable   : false
+        });
+    }
     
     var save_unidad=function(estado){
+        load_servidor();
         $.ajax
         ({
             type            :   'POST',
@@ -183,6 +197,7 @@ $(document).ready(function(){
             success         :   function(data)
             {
                 if(data.bandera==1){
+                     $('#id_btn_clean_unidad').trigger('click');                     
                     $('#id_btn_cancel_unidad').trigger('click');
                     $alert('Exito',data.mensaje,150,200);                    
                 }else{

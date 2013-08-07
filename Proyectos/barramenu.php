@@ -16,12 +16,12 @@
             <li><a href="#">Cat&aacute;logos</a>
                 <ul>
                     <li><a href="RegistrarProveedor.php"><span>Proveedores</span></a></li>
-                    <li><a href="#"><span>Unidad de Medida</span></a></li>
+                    <li><a href="RegistrarUnidadMedida.php"><span>Unidad de Medida</span></a></li>
                     <li><a href="RegistrarUnidad.php"><span>Unidades</span></a></li>
                     <li><a href="RegistrarLinea.php"><span>Lineas</span></a></li>
-                    <li><a href="#"><span>Experiencia</span></a></li>
-                    <li><a href="#"><span>Tipo de Empleado</span></a></li>
-                    <li><a href="#"><span>Perfiles de Usuario</span></a></li>
+                    <li><a href="RegistrarExperiencia.php"><span>Experiencia</span></a></li>
+                    <li><a href="RegistrarTipoEmpleado.php"><span>Tipo de Empleado</span></a></li>                    
+                    <li><a href="RegistrarNivelConfianza.php"><span>Perfiles de Usuario</span></a></li>
                 </ul>
             </li>
         </ul>
