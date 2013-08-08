@@ -146,24 +146,17 @@ switch ($accion) {
         break;
 
     case 4:
-        $sql = "SELECT COUNT(*) total from Proyectos where idTipoProyecto=" . $cod_personal;
-        $query = mysql_query($sql, $connection);
-        $row = mysql_fetch_array($query);
-        if ($row['total'] == 0) {
-            //eliminando al personal
-            $sql = "DELETE FROM TipoProyecto where idTipoProyecto=" . $cod_personal;
-            $respuesta = mysql_query($sql, $connection);
-            if ($respuesta) {
-                $mensaje = "TIPO DE PROYECTO ELIMINADO";
-                $bandera = 1;
-            } else {
-                $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR EL TIPO DE PROYECTO. INTENTE DE NUEVO";
-                $bandera = 0;
-            }
+        //eliminando al personal
+        $sql = "DELETE FROM Personal where idPersonal=" . $cod_personal;
+        $respuesta = mysql_query($sql, $connection);
+        if ($respuesta) {
+            $mensaje = "PERSONA ELIMINADA";
+            $bandera = 1;
         } else {
-            $mensaje = "NO SE PUEDE ELIMINAR EL TIPO DE PROYECTO PORQUE EXISTEN REGISTROS QUE DEPENDE DE EL";
+            $mensaje = "NO SE PUEDE ELIMINAR EL PERSONAL PORQUE EXISTEN REGISTROS QUE DEPENDE DE EL";
             $bandera = 0;
         }
+//      
         $jsonData["mensaje"] = $mensaje;
         $jsonData["bandera"] = $bandera;
 
