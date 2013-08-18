@@ -71,6 +71,16 @@
                                         <input name="textpass" type="password" class="highlight" id="textfield4">
                                         <span class="textfieldRequiredMsg">Digite su contraseña.</span></span></p>
                                 <p>&nbsp;</p>
+                                <p>Idioma:</p>
+                                <p>
+                                    <label for="textfield4"></label>
+                                    <span id="sprytextfield2">
+                                        <select name="lstIdioma" id="lstIdioma">
+                                            <option value="es">Español</option>
+                                            <option value="en">English</option>
+                                        </select>
+                                        <span class="textfieldRequiredMsg">Elija un idioma.</span></p>
+                                <p>&nbsp;</p>
                                 <p>
                                     <input type="submit" name="button" id="button" value="Ingresar">
                                 </p>

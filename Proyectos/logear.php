@@ -4,6 +4,7 @@ require("data.php");
 
 $txtusuario = $_POST['textuser'];
 $txtpass = $_POST['textpass'];
+$idioma=$_POST["lang"];
 $q="SELECT * FROM usuarios WHERE usuario = '$txtusuario' and Contrasena = md5('$txtpass')";
 echo $q;
 $query = mysql_query($q, $connection);
@@ -19,6 +20,7 @@ if ($txtusuario == $usuario and md5($txtpass == $pass)) {
     session_start();
     $_SESSION["autenticado"] = "si";
     $_SESSION["usuario"] = $usuario;
+    $_SESSION["idioma"]=$idioma;
     header("location:index.php");
 } else {
     ?>
