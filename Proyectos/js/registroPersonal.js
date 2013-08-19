@@ -169,7 +169,7 @@ $(document).ready(function(){
         changeMonth   :     true,
         changeYear    :     true,
         numberOfMonths:     1,
-        dateFormat    :     "yy/mm/dd",
+        dateFormat    :     "yy-mm-dd",
         yearRange     :     (parseInt(year.getFullYear()-45))+":"+year.getFullYear()
     });
     
@@ -179,7 +179,7 @@ $(document).ready(function(){
         changeMonth   :     true,
         changeYear    :     true,
         numberOfMonths:     1,
-        dateFormat    :     "yy/mm/dd",
+        dateFormat    :     "yy-mm-dd",
         yearRange     :     (parseInt(year.getFullYear()-45))+":"+year.getFullYear()
     });
     
