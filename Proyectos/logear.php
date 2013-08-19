@@ -4,7 +4,7 @@ require("data.php");
 
 $txtusuario = $_POST['textuser'];
 $txtpass = $_POST['textpass'];
-$idioma=$_POST["lang"];
+$idioma=$_POST["lstIdioma"];
 $q="SELECT * FROM usuarios WHERE usuario = '$txtusuario' and Contrasena = md5('$txtpass')";
 echo $q;
 $query = mysql_query($q, $connection);

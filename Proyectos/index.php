@@ -76,7 +76,7 @@
                                     <label for="textfield4"></label>
                                     <span id="sprytextfield2">
                                         <select name="lstIdioma" id="lstIdioma">
-                                            <option value="es">Español</option>
+                                            <option value="es" selected="selected">Español</option>
                                             <option value="en">English</option>
                                         </select>
                                         <span class="textfieldRequiredMsg">Elija un idioma.</span></p>
