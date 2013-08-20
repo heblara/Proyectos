@@ -32,7 +32,7 @@
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portfolio"; }?></a></li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Herramientas";}else{ echo "Tools"; }?></a>
         <ul>
-            <li><a href="#"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
+            <li><a href="CambiarIdioma.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
             <li><a href="#"><span> <?php if($_SESSION["idioma"]=="es"){echo "Actualizar";}else{ echo "Refresh"; }?> </span></a></li>
             <li><a href="#"><span>Video Conferencia</span></a></li>
             <li><a href="#"><span> <?php if($_SESSION["idioma"]=="es"){echo "Pagina web";}else{ echo "Website"; }?></span></a></li>

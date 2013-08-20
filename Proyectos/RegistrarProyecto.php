@@ -68,7 +68,7 @@
                                         <td width="25%">Tipo de Proyecto (*):</td>
                                         <td width="45%">
                                             <input type="hidden" id="id_hidden_cod_proyecto" name="hidden_cod_proyecto">
-                                            <select id="id_sel_tipo_proyecto" name="sel_tipo_proyecto">
+                                            <select id="id_sel_tipo_proyecto" name="sel_tipo_proyecto" onchange="mostrartipoproyecto()">
                                                 <option value="">Seleccione..</option>
                                                 <?php
                                                 $query = mysql_query("SELECT * FROM TipoProyecto ORDER BY Nombre ASC", $connection);

@@ -1,0 +1,9 @@
+<?php 
+session_start();
+if($_SESSION["idioma"]=="en"){
+	$_SESSION["idioma"]="es";
+}else{
+	$_SESSION["idioma"]="en";
+}
+header("Location:index.php");
+?>
