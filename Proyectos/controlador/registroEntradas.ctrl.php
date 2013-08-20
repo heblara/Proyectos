@@ -65,7 +65,7 @@ switch ($accion) {
             $mensaje = "ENTRADA AGREGADA";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA LINEA. INTENTE DE NUEVO ";
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA. INTENTE DE NUEVO ";
             $bandera = 0;
         }
 
