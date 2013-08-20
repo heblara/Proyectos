@@ -2,19 +2,19 @@ $(document).ready(function(){
     
     $('#id_btn_buscar_entradas').click(function(){
                             
-        var $id_txt_texto_entradas      =       $('#id_txt_texto_entradas').val();
-        var $id_sel_buscar_entradas     =       $('#id_sel_buscar_entradas').val();
+        var $id_txt_texto_ini_entradas      =       $('#id_txt_texto_ini_entradas').val();
+        var $id_txt_texto_fin_entradas     =       $('#id_txt_texto_fin_entradas').val();
         
         $('#id_btn_clean_entradas').trigger('click');  
         
         
-        if($id_txt_texto_entradas!="" || $id_sel_buscar_entradas!=""){
+        if($id_txt_texto_ini_entradas!="" || $id_txt_texto_fin_entradas!=""){
             $('#id_result_busqueda_entradas').html('<img src="images/ajax-loader.gif">');
             
             /* Mostrando resultados en un dialog*/
             $( "#id_result_busqueda_entradas" ).dialog({
                 height      : 350,
-                width       : 850,
+                width       : 950,
                 modal       : true,
                 draggable   : false,
                 resizable   : false
@@ -23,7 +23,7 @@ $(document).ready(function(){
             $.ajax
             ({
                 type            :   'POST',
-                url             :   'controlador/registroLinea.ctrl.php?accion=1',
+                url             :   'controlador/registroEntradas.ctrl.php?accion=1',
                 data            :   $('#id_form_buscar_entradas').serialize(), 
                 dataType        :   'json',
                 contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
@@ -37,9 +37,15 @@ $(document).ready(function(){
                             table+='<tr class="ui-widget-header ">';
                             table+='<th width="5%">#</th>';
                             table+='<th style="display:none">id</th>';                            
-                            table+='<th style="display:none">idUnidad</th>';                            
-                            table+='<th width="30%">Unidad</th>';                                                        
-                            table+='<th width="40%">Descripcion</th>';                                                        
+                            table+='<th style="display:none">idProveedor</th>';                            
+                            table+='<th width="10%" align="center">Fecha de Compra</th>';                                                        
+                            table+='<th width="10%" align="center">Cantidad de Producto</th>';                                                        
+                            table+='<th width="10%" align="center">Valor de Producto</th>';                                                        
+                            table+='<th width="10%" align="center">Porcentaje IVA</th>';                                                        
+                            table+='<th width="10%" align="center">Calculo IVA</th>';                                                        
+                            table+='<th width="10%" align="center">Stock Minimo</th>';                                                        
+                            table+='<th width="10%" align="center">Stock Maximo</th>';                                                        
+                            table+='<th width="10%" align="center">Anulada</th>';                                                        
                             table+='<th width="15%">OPCIONES</th>';
                             table+='</tr>';
                             table+='</thead>';
@@ -48,11 +54,23 @@ $(document).ready(function(){
                             
                             $.each(data.rows, function(index,value){
                                 table+='<tr>';
-                                table+='<td>'+(index+1)+'</td>';
+                                table+='<td align="center">'+(index+1)+'</td>';
                                 table+='<td style="display:none">'+value.id+'</td>';                               
-                                table+='<td style="display:none">'+value.idUnidad+'</td>';                               
-                                table+='<td>'+value.label_unidad+'</td>';                                
-                                table+='<td>'+value.descripcion+'</td>';                                
+                                table+='<td style="display:none">'+value.idProveedor+'</td>';                                                               
+                                table+='<td align="center">'+value.FechaCompra+'</td>';                                
+                                table+='<td align="center">'+value.CantidadProducto+'</td>';                                
+                                table+='<td align="center">'+value.ValorProducto+'</td>';                                
+                                table+='<td align="center">'+value.PorcentajeIVA+'</td>';                                
+                                table+='<td align="center">'+value.CalculoIVA+'</td>';                                
+                                table+='<td align="center">'+value.StockMinimo+'</td>';                                
+                                table+='<td align="center">'+value.StockMaximo+'</td>';                                
+                                
+                                $anulada="NO";
+                                if(value.Anulada==1){
+                                    $anulada="SI";
+                                }
+                                
+                                table+='<td align="center">'+$anulada+'</td>';                                
                                 table+='<td><input type="button" value="Seleccionar" onclick="show_information(this)"></td>';
                                 table+='</tr>';
                             });
@@ -105,17 +123,98 @@ $(document).ready(function(){
     }
     
     /* EVENTOS DEL FORMULARIO */
-    $('#id_texta_descripcion_entradas').bind({
+    var year = new Date();
+    
+    $( "#id_txt_texto_ini_entradas" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        dateFormat:"yy-mm-dd",
+        yearRange     :     (parseInt(year.getFullYear()-45))+":"+year.getFullYear(),
+        onClose: function( selectedDate ) {
+            $( "#id_txt_texto_fin_entradas" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+    $( "#id_txt_texto_fin_entradas" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        dateFormat:"yy-mm-dd",
+        yearRange     :     (parseInt(year.getFullYear()-45))+":"+year.getFullYear(),
+        onClose: function( selectedDate ) {
+            $( "#id_txt_texto_ini_entradas" ).datepicker( "option", "maxDate", selectedDate );
+        }
+    });
+    
+    
+        
+    $( "#id_txt_fecha_compra_entradas" ).datepicker
+    ({
+        defaultDate   :     "+1w",
+        changeMonth   :     true,
+        changeYear    :     true,
+        numberOfMonths:     1,
+        dateFormat    :     "yy-mm-dd",
+        yearRange     :     (parseInt(year.getFullYear()-45))+":"+year.getFullYear()
+    });
+    
+    $('#id_txt_cantidad_producto_entradas').bind({
         keypress:function(event){
             var tecla = (document.all) ? event.keyCode : event.which;                              
             if(tecla===0 || tecla===8 || tecla===9) return true;
             if(80===$(this).val().length)return false;
             var convertirTecla=String.fromCharCode(tecla);
-            var patron=/^[A-Za-zñÑáéíóúÁÉÍÓÚ#,.:;-_\s]{1}/;
+            var patron=/^[0-9]{1}/;
             return patron.test(convertirTecla);  
         }
     });
     
+       
+    $('#id_txt_valor_producto_entradas').priceFormat({
+        prefix: '',
+        thousandsSeparator: ''
+    });
+    
+    
+    $('#id_txt_porcentaje_entradas').bind({
+        keypress:function(event){
+            var tecla = (document.all) ? event.keyCode : event.which;                              
+            if(tecla===0 || tecla===8 || tecla===9) return true;
+            if(80===$(this).val().length)return false;
+            var convertirTecla=String.fromCharCode(tecla);
+            var patron=/^[0-9]{1}/;
+            return patron.test(convertirTecla);  
+        }
+    });
+    
+    
+    $('#id_txt_stock_minimo_entradas').bind({
+        keypress:function(event){
+            var tecla = (document.all) ? event.keyCode : event.which;                              
+            if(tecla===0 || tecla===8 || tecla===9) return true;
+            if(80===$(this).val().length)return false;
+            var convertirTecla=String.fromCharCode(tecla);
+            var patron=/^[0-9]{1}/;
+            return patron.test(convertirTecla);  
+        },
+        focus:function(){
+            calcular_iva();
+        }
+    });
+    
+    $('#id_txt_stock_maximo_entradas').bind({
+        keypress:function(event){
+            var tecla = (document.all) ? event.keyCode : event.which;                              
+            if(tecla===0 || tecla===8 || tecla===9) return true;
+            if(80===$(this).val().length)return false;
+            var convertirTecla=String.fromCharCode(tecla);
+            var patron=/^[0-9]{1}/;
+            return patron.test(convertirTecla);  
+        },
+        focus:function(){
+            calcular_iva();
+        }
+    });
         
     $('#id_btn_cancel_entradas').click(function(){       
         $('#id_btn_cancel_entradas').hide();
@@ -125,8 +224,15 @@ $(document).ready(function(){
     });
     
     $('#id_btn_clean_entradas').click(function(){
-        $('#id_texta_descripcion_entradas').val(''); 
-        $('#id_sel_unidad_entradas').val('');
+        $('#id_sel_proveedores_entradas').val('');
+        $('#id_txt_fecha_compra_entradas').val('');
+        $('#id_txt_cantidad_producto_entradas').val('');
+        $('#id_txt_valor_producto_entradas').val('');
+        $('#id_txt_porcentaje_entradas').val('');
+        $('#id_txt_calculo_iva_entradas').val('');
+        $('#id_txt_stock_minimo_entradas').val('');
+        $('#id_txt_stock_maximo_entradas').val('');
+        $('#id_ckd_anulada_entradas').removeAttr('checked')
         $('#id_btn_cancel_entradas').trigger('click');  
     });
     
@@ -143,7 +249,7 @@ $(document).ready(function(){
     });
     
     $('#id_btn_delete_entradas').click(function(){
-        $('#dialog').html('<p>Desea eliminar la entradas?</p>');
+        $('#dialog').html('<p>Desea eliminar la Entrada?</p>');
         $( "#dialog" ).dialog({
             title       : 'Confirmacion',
             resizable   : false,
@@ -164,11 +270,20 @@ $(document).ready(function(){
     });
     
     var validar_form=function(){
-        $descripcion=$('#id_texta_descripcion_entradas').val();
-        $idLinea=$('#id_sel_unidad_entradas').val();
+        $sel_proveedores_entradas = $('#id_sel_proveedores_entradas').val();
+        $txt_fecha_compra_entradas = $('#id_txt_fecha_compra_entradas').val();
+        $txt_cantidad_producto_entradas = $('#id_txt_cantidad_producto_entradas').val();
+        $txt_valor_producto_entradas = $('#id_txt_valor_producto_entradas').val();
+        $txt_porcentaje_entradas = $('#id_txt_porcentaje_entradas').val();
+        $txt_calculo_iva_entradas = $('#id_txt_calculo_iva_entradas').val();
+        $txt_stock_minimo_entradas = $('#id_txt_stock_minimo_entradas').val();
+        $txt_stock_maximo_entradas = $('#id_txt_stock_maximo_entradas').val();
+        
         $respuesta=true;
         //verificacion de campos vacios
-        if($descripcion=='' || $idLinea==''){
+        if($sel_proveedores_entradas=='' || $txt_fecha_compra_entradas=="" || $txt_cantidad_producto_entradas=="" 
+            || $txt_valor_producto_entradas=="" || $txt_porcentaje_entradas=="" || $txt_calculo_iva_entradas=="" 
+            || $txt_stock_minimo_entradas=="" || $txt_stock_maximo_entradas==""){
             $alert('Error','Debe de llenar todos los campos requeridos',130,200);            
             $respuesta=false;
         }
@@ -196,7 +311,7 @@ $(document).ready(function(){
         $.ajax
         ({
             type            :   'POST',
-            url             :   'controlador/registroLinea.ctrl.php?accion='+estado,
+            url             :   'controlador/registroEntradas.ctrl.php?accion='+estado,
             data            :   $('#id_registrar_entradas').serialize(), 
             dataType        :   'json',
             contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
@@ -213,19 +328,48 @@ $(document).ready(function(){
     }
     
     
+    var calcular_iva=function(){
+        $txt_cantidad_producto_entradas = $('#id_txt_cantidad_producto_entradas').val();
+        $txt_valor_producto_entradas = $('#id_txt_valor_producto_entradas').val();
+        $txt_porcentaje_entradas = $('#id_txt_porcentaje_entradas').val();
+        var calc=0;
+        
+        if($txt_cantidad_producto_entradas!="" && $txt_valor_producto_entradas!="" || $txt_porcentaje_entradas!=""){
+            calc=($txt_cantidad_producto_entradas * $txt_valor_producto_entradas)*($txt_porcentaje_entradas/100);
+            $('#id_txt_calculo_iva_entradas').val(calc);
+        }
+    }
+    
 });
 
 var show_information=function(row){
-    var id=$(row).parents('tr').find('td').eq(1).html();
-    var idUnidad=$(row).parents('tr').find('td').eq(2).html();
-    var descripcion=$(row).parents('tr').find('td').eq(4).html();
-    
+    $idEntrada=$(row).parents('tr').find('td').eq(1).html();    
+    $sel_proveedores_entradas = $(row).parents('tr').find('td').eq(2).html();    
+    $txt_fecha_compra_entradas = $(row).parents('tr').find('td').eq(3).html();
+    $txt_cantidad_producto_entradas = $(row).parents('tr').find('td').eq(4).html();
+    $txt_valor_producto_entradas = $(row).parents('tr').find('td').eq(5).html();
+    $txt_porcentaje_entradas = $(row).parents('tr').find('td').eq(6).html();
+    $txt_calculo_iva_entradas = $(row).parents('tr').find('td').eq(7).html();
+    $txt_stock_minimo_entradas = $(row).parents('tr').find('td').eq(8).html();
+    $txt_stock_maximo_entradas =$(row).parents('tr').find('td').eq(9).html();  
+    $chk_anulada_entradas =$(row).parents('tr').find('td').eq(10).html();  
     //clean de campos
     $('#id_btn_clean_entradas').trigger('click');
      
-    $('#id_hidden_cod_entradas').val(id);
-    $('#id_sel_unidad_entradas').val(idUnidad);
-    $('#id_texta_descripcion_entradas').val(descripcion);
+    $('#id_hidden_cod_entradas').val($idEntrada);
+    $('#id_sel_proveedores_entradas').val($sel_proveedores_entradas);
+    $('#id_txt_fecha_compra_entradas').val($txt_fecha_compra_entradas);
+    $('#id_txt_cantidad_producto_entradas').val($txt_cantidad_producto_entradas);
+    $('#id_txt_valor_producto_entradas').val($txt_valor_producto_entradas);
+    $('#id_txt_porcentaje_entradas').val($txt_porcentaje_entradas);
+    $('#id_txt_calculo_iva_entradas').val($txt_calculo_iva_entradas);
+    $('#id_txt_stock_minimo_entradas').val($txt_stock_minimo_entradas);
+    $('#id_txt_stock_maximo_entradas').val($txt_stock_maximo_entradas);
+    
+    if($chk_anulada_entradas=="SI"){
+        $('#id_ckd_anulada_entradas').attr('checked',true);
+    }
+    
             
     $('#id_btn_update_entradas').show();
     $('#id_btn_delete_entradas').show();

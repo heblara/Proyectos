@@ -3,33 +3,43 @@
 require("../data.php");
 
 $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
-$descripcion = isset($_POST['texta_descripcion_entradas']) ? $_POST['texta_descripcion_entradas'] : '';
-$idUnidad = isset($_POST['sel_unidad_entradas']) ? $_POST['sel_unidad_entradas'] : '';
 $cod_entradas = isset($_POST['hidden_cod_entradas']) ? $_POST['hidden_cod_entradas'] : '';
+$sel_proveedores_entradas = isset($_POST['sel_proveedores_entradas']) ? $_POST['sel_proveedores_entradas'] : '';
+$txt_fecha_compra_entradas = isset($_POST['txt_fecha_compra_entradas']) ? $_POST['txt_fecha_compra_entradas'] : '';
+$txt_cantidad_producto_entradas = isset($_POST['txt_cantidad_producto_entradas']) ? $_POST['txt_cantidad_producto_entradas'] : '';
+$txt_valor_producto_entradas = isset($_POST['txt_valor_producto_entradas']) ? $_POST['txt_valor_producto_entradas'] : '';
+$txt_porcentaje_entradas = isset($_POST['txt_porcentaje_entradas']) ? $_POST['txt_porcentaje_entradas'] : '';
+$txt_calculo_iva_entradas = isset($_POST['txt_calculo_iva_entradas']) ? $_POST['txt_calculo_iva_entradas'] : '';
+$txt_stock_minimo_entradas = isset($_POST['txt_stock_minimo_entradas']) ? $_POST['txt_stock_minimo_entradas'] : '';
+$txt_stock_maximo_entradas = isset($_POST['txt_stock_maximo_entradas']) ? $_POST['txt_stock_maximo_entradas'] : '';
+$ckd_anulada_entradas = isset($_POST['ckd_anulada_entradas']) ? $_POST['ckd_anulada_entradas'] : 0;
 
 
 switch ($accion) {
     case 1: //buscar personal
         $array_data = array();
-        $texto = isset($_POST['txt_texto_entradas']) ? $_POST['txt_texto_entradas'] : '';
-        $opc = isset($_POST['sel_buscar_entradas']) ? $_POST['sel_buscar_entradas'] : '';
+        $texto1 = isset($_POST['txt_texto_ini_entradas']) ? $_POST['txt_texto_ini_entradas'] : '';
+        $texto2 = isset($_POST['txt_texto_fin_entradas']) ? $_POST['txt_texto_fin_entradas'] : '';
 
+        if ($texto1 != '' || $texto2 != '') {
 
-
-        if ($texto != '' || $opc != '') {
-
-            $sql = "select l.idLineas,l.Descripcion Linea, u.idUnidad, u.Descripcion Unidad from Lineas l ";
-            $sql.="inner join Unidad u on l.idUnidad=u.idUnidad ";
-            $sql.="where " . $opc . " like '%" . $texto . "%' order by l.Descripcion asc";
+            $sql = "select * from entradas ";
+            $sql.="where FechaCompra BETWEEN '" . $texto1 . " 00:00:00' AND '" . $texto2 . " 23:59:59' order by FechaCompra asc";
 
             $query = mysql_query($sql, $connection);
             $i = 0;
             while ($row = mysql_fetch_array($query)) {
                 $array_data[$i] = array(
-                    "id" => $row["idLineas"],
-                    "idUnidad" => $row["idUnidad"],
-                    "label_unidad" => $row["Unidad"],
-                    "descripcion" => $row["Linea"]
+                    "id" => $row["idEntradas"],
+                    "idProveedor" => $row["idProveedor"],
+                    "FechaCompra" => $row["FechaCompra"],
+                    "CantidadProducto" => $row["CantidadProducto"],
+                    "ValorProducto" => $row["ValorProducto"],
+                    "PorcentajeIVA" => $row["PorcentajeIVA"],
+                    "CalculoIVA" => $row["CalculoIVA"],
+                    "StockMinimo" => $row["StockMinimo"],
+                    "StockMaximo" => $row["StockMaximo"],
+                    "Anulada" => $row["Anulada"]
                 );
                 $i++;
             }
@@ -46,15 +56,16 @@ switch ($accion) {
 
     case 2: //adicionando un nuevo registro
 
-        $sql = "insert into Linea (idUnidad,Descripcion) ";
-        $sql.="values(" . $idUnidad . ",'" . $descripcion . "')";
+        $sql = "insert into Entradas (idProveedor,FechaCompra,CantidadProducto,ValorProducto,PorcentajeIVA,CalculoIVA,StockMinimo,StockMaximo,Anulada) ";
+        $sql.="values(" . $sel_proveedores_entradas . ",'" . $txt_fecha_compra_entradas . "'," . $txt_cantidad_producto_entradas . ",'" . $txt_valor_producto_entradas . "',";
+        $sql.="" . $txt_porcentaje_entradas . ",'" . $txt_calculo_iva_entradas . "'," . $txt_stock_minimo_entradas . "," . $txt_stock_maximo_entradas . "," . $ckd_anulada_entradas . ")";
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
-            $mensaje = "LINEA AGREGADA";
+            $mensaje = "ENTRADA AGREGADA";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA NUEVA LINEA. INTENTE DE NUEVO ";
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA LINEA. INTENTE DE NUEVO ";
             $bandera = 0;
         }
 
@@ -65,14 +76,18 @@ switch ($accion) {
     case 3: //modificando la entradas
 
 
-        $sql = "UPDATE Lineas SET Descripcion='" . $descripcion . "', idUnidad=" . $idUnidad . " WHERE idLineas=" . $cod_entradas;
+        $sql = "UPDATE Entradas SET FechaCompra='" . $txt_fecha_compra_entradas . "',";
+        $sql.="CantidadProducto=" . $txt_cantidad_producto_entradas . ",ValorProducto='" . $txt_valor_producto_entradas . "',";
+        $sql.="PorcentajeIVA=" . $txt_porcentaje_entradas . ",CalculoIVA='" . $txt_calculo_iva_entradas . "',";
+        $sql.="StockMinimo=" . $txt_stock_minimo_entradas . ",StockMaximo=" . $txt_stock_maximo_entradas . ",Anulada=" . $ckd_anulada_entradas;
+        $sql.=" WHERE idProveedor=" . $cod_entradas;
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
-            $mensaje = "LINEA MODIFICADA";
+            $mensaje = "ENTRADA MODIFICADA";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ACTUALIZAR LA LINEA. INTENTE DE NUEVO.";
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ACTUALIZAR LA ENTRADA. INTENTE DE NUEVO. " . $sql;
             $bandera = 0;
         }
 
@@ -81,24 +96,16 @@ switch ($accion) {
         break;
 
     case 4: //eliminando entradas
-        $sql = "SELECT COUNT(*) total from Especifico where idLinea=" . $cod_entradas;
-        $query = mysql_query($sql, $connection);
-        $row = mysql_fetch_array($query);
-        if ($row['total'] == 0) {
-            $sql = "delete from Lineas where idLineas=" . $cod_entradas;
-            $respuesta = mysql_query($sql, $connection);
-            if ($respuesta) {
-                $mensaje = "LINEA ELIMINADA";
-                $bandera = 1;
-            } else {
-                $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR LA LINEA. INTENTE DE NUEVO ";
-                $bandera = 0;
-            }
+
+        $sql = "delete from Entradas where idEntradas=" . $cod_entradas;
+        $respuesta = mysql_query($sql, $connection);
+        if ($respuesta) {
+            $mensaje = "ENTRADA ELIMINADA";
+            $bandera = 1;
         } else {
-            $mensaje = "NO SE PUEDE ELIMINAR LA LINEA PORQUE HAY REGISTROS QUE DEPENDEN DE ELLA.";
+            $mensaje = "NO SE PUEDE ELIMINAR LA ENTRADA PORQUE HAY REGISTROS QUE DEPENDEN DE ELLA.";
             $bandera = 0;
         }
-
 
         $jsonData["mensaje"] = $mensaje;
         $jsonData["bandera"] = $bandera;

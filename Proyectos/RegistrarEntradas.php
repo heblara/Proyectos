@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/jquery-ui.css" />        
         <script src="js/jquery-1.9.1.js"></script>
         <script src="js/jquery-ui.js"></script>        
+        <script src="js/money/jquery.price_format.1.8.min.js"></script>                
         <script src="js/registroEntradas.js"></script>                
         <?php
         include("header.php");
@@ -39,14 +40,16 @@
             <!-- FOOTER -->
             <div id="footer">
                 <div id="content_form">
-                    <h2>Registros de Linea</h2>
+                    <h2>Registros de Entradas</h2>
                     <div id="id_div_form_buscar">
                         <form id="id_form_buscar_entradas" class="form-style">
                             <table width="100%" >
                                 <tr>
                                     <td width="18%">Buscar entradas por fecha de compra:</td>                                    
                                     <td width="50%">
-                                        <input type="text" id="id_txt_texto_entradas" name="txt_texto_entradas">
+                                        <input type="text" id="id_txt_texto_ini_entradas" name="txt_texto_ini_entradas" style="width: 40%">
+                                        Hasta
+                                        <input type="text" id="id_txt_texto_fin_entradas" name="txt_texto_fin_entradas" style="width: 40%">
                                     </td>
                                     <td width="5%" align="right">
                                         <input type="button" id="id_btn_buscar_entradas" name="btn_buscar_entradas" value="Buscar">
@@ -83,7 +86,7 @@
                                     <td width="25%">Fecha de compra (*):</td>
                                     <td width="45%">
                                         <input type="hidden" id="id_hidden_cod_entradas" name="hidden_cod_entradas">
-                                        <input type="text" id="id_txt_fecha_compra_entradas" name="txt_fecha_compra_entradas"> 
+                                        <input type="text" id="id_txt_fecha_compra_entradas" name="txt_fecha_compra_entradas" readonly="true"> 
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>
@@ -95,23 +98,23 @@
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
-                                    <td width="25%">Valor de Producto (*):</td>
+                                    <td width="25%">Valor de Producto $ (*):</td>
                                     <td width="45%">                                        
                                         <input type="text" id="id_txt_valor_producto_entradas" name="txt_valor_producto_entradas"> 
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
-                                    <td width="25%">Porcentaje IVA (*):</td>
+                                    <td width="25%">Porcentaje IVA (Rango 1-100)(*):</td>
                                     <td width="45%">                                        
                                         <input type="text" id="id_txt_porcentaje_entradas" name="txt_porcentaje_entradas"> 
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
-                                    <td width="25%">Calculo IVA (*):</td>
+                                    <td width="25%">Calculo IVA $ (*):</td>
                                     <td width="45%">                                        
-                                        <input type="text" id="id_txt_calculo_iva_entradas" name="txt_calculo_iva_entradas"> 
+                                        <input type="text" id="id_txt_calculo_iva_entradas" name="txt_calculo_iva_entradas" readonly="true"> 
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>
@@ -130,9 +133,9 @@
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
-                                    <td width="25%">Stock Maximo (*):</td>
+                                    <td width="25%">Anulada :</td>
                                     <td width="45%">                                        
-                                        <input type="checkbox" id="id_ckd_anulada_entradas" name="ckd_anulada_entradas"> 
+                                        <input type="checkbox" id="id_ckd_anulada_entradas" name="ckd_anulada_entradas" value="1"> 
                                     </td>        
                                     <td width="30%" aling="left"></td>
                                 </tr>

@@ -11,11 +11,6 @@ $fecha_ini = isset($_POST['txt_fecha_inicio_proyecto']) ? $_POST['txt_fecha_inic
 $fecha_fin = isset($_POST['txt_fecha_fin_proyecto']) ? $_POST['txt_fecha_fin_proyecto'] : '';
 $costo = isset($_POST['txt_costo_proyecto']) ? $_POST['txt_costo_proyecto'] : '';
 
-
-
-
-
-
 switch ($accion) {
     case 1: //buscar proyecto        
         $texto = isset($_POST['txt_texto_proyecto']) ? $_POST['txt_texto_proyecto'] : '';
@@ -50,6 +45,8 @@ switch ($accion) {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
         }
+
+        sleep(1);
         break;
 
     case 2: //adicionando un nuevo registro
@@ -111,6 +108,6 @@ switch ($accion) {
 
         break;
 }
-sleep(1);
+
 echo json_encode($jsonData);
 ?>

@@ -44,6 +44,8 @@ switch ($accion) {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
         }
+
+        sleep(1);
         break;
 
     case 2:
@@ -149,9 +151,9 @@ switch ($accion) {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
         }
-
+        sleep(1);
         break;
 }
-sleep(1);
+
 echo json_encode($jsonData);
 ?>

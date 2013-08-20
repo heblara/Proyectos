@@ -43,6 +43,8 @@ switch ($accion) {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
         }
+        sleep(1);
+
         break;
 
     case 2: //adicionando un nuevo registro
@@ -111,6 +113,6 @@ switch ($accion) {
 
         break;
 }
-sleep(1);
+
 echo json_encode($jsonData);
 ?>

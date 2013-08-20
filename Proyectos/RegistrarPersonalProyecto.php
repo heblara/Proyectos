@@ -3,11 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Gestión de Construcción</title>        
-        <link rel="stylesheet" href="css/jquery-ui.css" />                
-        <link rel="stylesheet" href="js/FCBKcomplete-master/style.css" type="text/css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" href="css/jquery-ui.css" />                        
         <script src="js/jquery-1.9.1.js"></script>
-        <script src="js/jquery-ui.js"></script>             
-        <script src="js/FCBKcomplete-master/jquery.fcbkcomplete.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jquery-ui.js"></script>                     
         <script src="js/registroPersonalProyecto.js"></script>                   
 
 
