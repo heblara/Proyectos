@@ -1,7 +1,7 @@
 <?php
 
 require("../data.php");
-
+session_start();
 $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
 $cod_entradas = isset($_POST['hidden_cod_entradas']) ? $_POST['hidden_cod_entradas'] : '';
 $sel_proveedores_entradas = isset($_POST['sel_proveedores_entradas']) ? $_POST['sel_proveedores_entradas'] : '';
@@ -43,7 +43,11 @@ switch ($accion) {
                 );
                 $i++;
             }
-            $jsonData["mensaje"] = "RECUPERANDO DATOS";
+            if($_SESSION["idioma"]=="es"){
+                $jsonData["mensaje"] = "RECUPERANDO DATOS";
+            }else{ 
+                $jsonData["mensaje"] = "RETREIVING DATA ";
+            }
             $jsonData["bandera"] = 1;
             $jsonData["total_rows"] = $i;
             $jsonData["rows"] = $array_data;
@@ -65,7 +69,11 @@ switch ($accion) {
             $mensaje = "ENTRADA AGREGADA";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA. INTENTE DE NUEVO ";
+            if($_SESSION["idioma"]=="es"){
+                $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA. INTENTE DE NUEVO ";
+            }else{ 
+                $mensaje = "AN ERROR HAS OCURRED AT THE MOMENT  OF ADD THE TYPE OF EMPLOYEE. PLEASE TRY AGAIN";
+            }
             $bandera = 0;
         }
 
