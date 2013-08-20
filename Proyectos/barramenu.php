@@ -29,7 +29,7 @@
         </ul>
     </li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
-    <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portfolio"; }?></a></li>
+    <li><a href="Portafolio.php"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portfolio"; }?></a></li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Herramientas";}else{ echo "Tools"; }?></a>
         <ul>
             <li><a href="CambiarIdioma.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
