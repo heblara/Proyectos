@@ -14,7 +14,7 @@ require("data.php");
 		<!--<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>-->
 		
 		<!-- JS -->
-		<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>                 
 		<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
 		<script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>

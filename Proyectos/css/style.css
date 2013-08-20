@@ -1011,7 +1011,7 @@ h6{ font-size: 20px; }
 
 /* FORMS ------------------------------------------------------------*/
 
-#sc-contact-form,
+/*#sc-contact-form,
 #contactForm,
 #commentform,
 #contactForm{
@@ -1085,7 +1085,7 @@ h6{ font-size: 20px; }
     font-size: 14px;
     line-height: 2.5em;
     font-weight: light;
-}
+}*/
 
 /* PAGER ------------------------------------------------------------*/
 
@@ -1302,6 +1302,10 @@ h6{ font-size: 20px; }
 
 .even{
     background-color: #F2F2F2;    
+}
+
+.table-style{
+    outline: none;
 }
 
 
