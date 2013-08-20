@@ -14,7 +14,7 @@
             <li><a href="RegistrarTipoProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Tipo de proyecto";}else{ echo "Project Type"; }?></span></a></li>
             <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>
             <li><a href="RegistrarPersonalProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Registrar Personal a Proyecto";}else{ echo "Project Personnel Register"; }?></span></a></li>
-           <li><a href="RegistroEntradas.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nuevo reporte";}else{ echo "New report"; }?></span></a></li>
+           <li><a href="Reportes.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nuevo reporte";}else{ echo "New report"; }?></span></a></li>
             <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Cat&aacute;logos";}else{ echo "Catalogs"; }?></a>
                 <ul>
                     <li><a href="RegistrarProveedor.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proveedor";}else{ echo "Provider"; }?></span></a></li>

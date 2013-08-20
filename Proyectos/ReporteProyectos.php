@@ -1,7 +1,7 @@
 
 <?php
-include("../../data.php");
-require_once("../dompdf_config.inc.php");
+include("data.php");
+require_once("dompdf/dompdf_config.inc.php");
 $consulta="SELECT * FROM proyectos";
 $html="";
 $html.="<table width='100%' align='center'>";

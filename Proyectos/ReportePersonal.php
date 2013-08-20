@@ -1,11 +1,11 @@
 
 <?php
-include("../../data.php");
-require_once("../dompdf_config.inc.php");
-$consulta="SELECT * FROM proyectos";
+include("data.php");
+require_once("dompdf/dompdf_config.inc.php");
+$consulta="SELECT * FROM personal";
 $html="";
 $html.="<table width='100%' align='center'>";
-$html.="<caption><h1 align='center'>LISTADO DE PROYECTOS</h1></caption>";
+$html.="<caption><h1 align='center'>LISTADO DE PERSONAL DE LA EMPRESA</h1></caption>";
 $execute=mysql_query($consulta);
 
 $html.="<tr>";
@@ -13,32 +13,32 @@ $html.="<tr>";
   $html.="Numero";
   $html.="</th>";
   $html.="<th>"; 
-  $html.="Nombre Proyecto";
+  $html.="Nombre completo";
   $html.="</th>";
   $html.="<th>"; 
-  $html.="Fecha Inicio";
+  $html.="Fecha de ingreso";
   $html.="</th>";
   $html.="<th>"; 
-  $html.="Fecha Fin";
+  $html.="Habilidades";
   $html.="</th>";
   $html.="</tr><tr><td colspan='4'><hr /></td>";
   $html.="</tr>";
 $i=0;
   //$html.=mysql_num_rows($execute);
-while($proyecto=mysql_fetch_assoc($execute)){
+while($personal=mysql_fetch_assoc($execute)){
   $i++;
   $html.="<tr>";
   $html.="<td>"; 
   $html.=$i;
   $html.="</td>";
   $html.="<td>"; 
-  $html.=$proyecto["NombreProyecto"];
+  $html.=$personal["Nombres"]." ".$personal["Apellidos"];
   $html.="</td>";
   $html.="<td>"; 
-  $html.=$proyecto["FechaInicio"];
+  $html.=$personal["FechaIngreso"];
   $html.="</td>";
   $html.="<td>"; 
-  $html.=$proyecto["FechaFin"];
+  $html.=$personal["Habilidad1"].", ".$personal["Habilidad2"].", ".$personal["Habilidad3"];
   $html.="</td>";
   $html.="</tr>";
 }
