@@ -1,12 +1,12 @@
 <?php
 
 require("data.php");
-
+ob_start();
 $txtusuario = $_POST['textuser'];
 $txtpass = $_POST['textpass'];
 $idioma=$_POST["lstIdioma"];
 $q="SELECT * FROM usuarios WHERE usuario = '$txtusuario' and Contrasena = md5('$txtpass')";
-echo $q;
+//echo $q;
 $query = mysql_query($q, $connection);
 $usuario = "";
 $pass = "";
@@ -31,4 +31,5 @@ if ($txtusuario == $usuario and md5($txtpass == $pass)) {
     <?php
 
 }
+ob_end_flush();
 ?>
