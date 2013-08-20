@@ -62,7 +62,7 @@
                         <form id="id_registrar_entradas" class="form-style">
                             <table width="100%">
                                 <tr>
-                                    <td>Unidad (*):</td>
+                                    <td>Proveedores (*):</td>
                                     <td>
                                         <select id="id_sel_proveedores_entradas" name="sel_proveedores_entradas">
                                             <option value="">Seleccione..</option>
