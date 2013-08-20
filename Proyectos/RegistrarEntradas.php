@@ -156,7 +156,14 @@
 
                 </div>
                 <div id="dialog"></div>
-
+<br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                 
+           
                 <!-- footer-cols -->				<!-- ENDS footer-cols -->
                 <div id="bottom">
                     <?php include("bottom.php") ?>
