@@ -9,6 +9,10 @@
                     <li><a href="RegistrarUsuarios.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Usuarios del sistema";}else{ echo "User/System user"; }?></span></a></li>
                 </ul>
             </li>
+            <li><a href="RegistrarTipoProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Tipo de proyecto";}else{ echo "Project Type"; }?></span></a></li>
+            <li><a href="AgregarProyectos.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>
+            <li><a href="AgregarEntrada.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nueva entrada";}else{ echo "New entry"; }?></span></a></li>
+            <li><a href="AgregarEntrada.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nuevo reporte";}else{ echo "New report"; }?></span></a></li>
 
             <li><a href="RegistrarTipoProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Tipo de proyecto";}else{ echo "Project Type"; }?></span></a></li>
             <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>
@@ -29,7 +33,7 @@
         </ul>
     </li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
-    <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portafolio"; }?></a></li>
+    <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portfolio"; }?></a></li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Herramientas";}else{ echo "Tools"; }?></a>
         <ul>
             <li><a href="#"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
