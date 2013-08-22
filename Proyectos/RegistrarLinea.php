@@ -47,16 +47,32 @@
                                     <td width="18%">Buscar linea por:</td>
                                     <td width="10%">
                                         <select id="id_sel_buscar_linea" name="sel_buscar_linea">
-                                            <option value="">Seleccione...</option>
-                                            <option value="l.Descripcion">Nombre de Linea</option>                                            
-                                            <option value="u.Descripcion">Nombre de Unidad</option>
+                                            <option value=""><?php if($_SESSION["idioma"]=="es"){
+                echo "Seleccion..";
+            }else{ 
+                echo "Select...";
+            } ?></option>
+                                            <option value="l.Descripcion"><?php if($_SESSION["idioma"]=="es"){
+                echo "Nombre de linea";
+            }else{ 
+                echo "Line's name";
+            } ?></option>                                            
+                                            <option value="u.Descripcion"><?php if($_SESSION["idioma"]=="es"){
+                echo "Nombre de Unidad";
+            }else{ 
+                echo "Unit name";
+            } ?></option>
                                         </select>
                                     </td>
                                     <td width="50%">
                                         <input type="text" id="id_txt_texto_linea" name="txt_texto_linea">
                                     </td>
                                     <td width="5%" align="right">
-                                        <input type="button" id="id_btn_buscar_linea" name="btn_buscar_linea" value="Buscar">
+                                        <input type="button" id="id_btn_buscar_linea" name="btn_buscar_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Buscar";
+            }else{ 
+                echo "Search";
+            } ?>">
                                     </td>
                                     <td width="17%"></td>
                                 </tr>
@@ -69,10 +85,18 @@
                         <form id="id_registrar_linea" class="form-style">
                             <table width="100%">
                                 <tr>
-                                    <td>Unidad (*):</td>
+                                    <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Unidad";
+            }else{ 
+                echo "Unit";
+            } ?> (*):</td>
                                     <td>
                                         <select id="id_sel_unidad_linea" name="sel_unidad_linea">
-                                            <option value="">Seleccione..</option>
+                                            <option value=""><?php if($_SESSION["idioma"]=="es"){
+                echo "Seleccione";
+            }else{ 
+                echo "Select";
+            } ?></option>
                                             <?php
                                             $query = mysql_query("SELECT * FROM Unidad ORDER BY Descripcion ASC", $connection);
 
@@ -97,16 +121,40 @@
                                 <tr>
                                     <td></td>
                                     <td align="right">                                        
-                                        <input type="button" id="id_btn_add_linea" name="btn_add_linea" value="Agregar">
-                                        <input type="button" id="id_btn_update_linea" name="btn_update_linea" value="Modificar" style="display: none">
-                                        <input type="button" id="id_btn_delete_linea" name="btn_delete_linea" value="Eliminar" style="display: none">
-                                        <input type="button" id="id_btn_clean_linea" name="btn_clean_linea" value="Limpiar">
-                                        <input type="button" id="id_btn_cancel_linea" name="btn_cancel_linea" value="Cancelar" style="display: none">
+                                        <input type="button" id="id_btn_add_linea" name="btn_add_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Agregar";
+            }else{ 
+                echo "Add";
+            } ?>">
+                                        <input type="button" id="id_btn_update_linea" name="btn_update_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Modificar";
+            }else{ 
+                echo "Update";
+            } ?>" style="display: none">
+                                        <input type="button" id="id_btn_delete_linea" name="btn_delete_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Eliminar";
+            }else{ 
+                echo "Delete";
+            } ?>" style="display: none">
+                                        <input type="button" id="id_btn_clean_linea" name="btn_clean_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Limpiar";
+            }else{ 
+                echo "Clear";
+            } ?>">
+                                        <input type="button" id="id_btn_cancel_linea" name="btn_cancel_linea" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Cancelar";
+            }else{ 
+                echo "Cancel";
+            } ?>" style="display: none">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"><span style="color: #FFD800">Son campos requeridos (*)</span></td>
+                                    <td colspan="3"><span style="color: #FFD800"><?php if($_SESSION["idioma"]=="es"){
+                echo "Son campos requeridos (*)";
+            }else{ 
+                echo "This fields are required (*)";
+            } ?></span></td>
                                 </tr>
                             </table>                        
                         </form>                        

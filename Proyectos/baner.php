@@ -18,7 +18,7 @@
         <!-- search --><!-- ENDS search -->
 
         <!-- headline -->
-        <div id="headline">Gestión de  <a href="#">Construcción.</a>
+        <div id="headline"><?php if(isset($_SESSION["idioma"])){ if($_SESSION["idioma"]=="es"){ ?>Gestión de  <a href="#">Construcción.</a><?php }else{ echo "Construction Management."; }}else{ echo "Gestion de Construcción";} ?>
         </div>
         <!-- ENDS headline -->
 
@@ -31,8 +31,8 @@
                 <div id="slider-block">
                     <div id="slider-holder">
                         <div id="slider">
-                            <a href="#"><img src="images/01.jpg" title="Proyecto para Semana de Juventud 2013." alt="" /></a>
-                            <a href="#"><img src="images/02.jpg" title="Proyecto para Ingenieria Civil." alt="" /></a>
+                            <a href="#"><img src="images/01.jpg" title="<?php if(isset($_SESSION['idioma'])){if($_SESSION["idioma"]=="es"){ ?>Proyecto para Semana de Juventud 2013.<?php }else{ echo "Project for Youth Week";}}else{ echo "Proyecto para Semana de Juventud 2013"; } ?>" alt="Proyecto para Semana de Juventud 2013" /></a>
+                            <a href="#"><img src="images/02.jpg" title="<?php if(isset($_SESSION['idioma'])){if($_SESSION["idioma"]=="es"){ ?>Proyecto para Ingenieria Civil.<?php }else{ echo "Civil Engeneering oriented Project";}}else{ echo "Proyecto para Ingenieria Civil."; } ?>" alt="" /></a>
                         </div>
                     </div>
                 </div></div>

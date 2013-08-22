@@ -1,8 +1,10 @@
 <?php
 @session_start();
 require("data.php");
+mysql_query("SET NAMES 'UTF8'")
 ?>
 <!-- CSS -->
+		<link rel="shorcut icon" href="img/favicon.ico" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="css/social-icons.css" type="text/css" media="screen" />
 		<!--[if IE 8]>

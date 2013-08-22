@@ -92,7 +92,11 @@ switch ($accion) {
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
-            $mensaje = "ENTRADA MODIFICADA";
+            if($_SESSION["idioma"]=="es"){
+                $mensaje = "ENTRADA MODIFICADA";
+            }else{ 
+                $mensaje = "ENTRY UPDATED";
+            }
             $bandera = 1;
         } else {
             $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ACTUALIZAR LA ENTRADA. INTENTE DE NUEVO. " . $sql;

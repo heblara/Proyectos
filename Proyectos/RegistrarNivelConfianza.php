@@ -38,17 +38,29 @@
                 <div id="contents">
 
                     <div id="content_form">
-                        <h2>Registros de Perfiles de Usuarios</h2>
+                        <h2><?php if($_SESSION["idioma"]=="es"){
+                echo "Registro de perfiles de usuario";
+            }else{ 
+                echo "Profile users register";
+            } ?></h2>
                         <div id="id_div_form_buscar">
                             <form id="id_form_buscar_nivel_confianza" class="form-style">
                                 <table width="100%" >
                                     <tr>
-                                        <td width="20%">Buscar perfil de usuario:</td>                                       
+                                        <td width="20%"><?php if($_SESSION["idioma"]=="es"){
+                echo "Buscar perfil de usuario:";
+            }else{ 
+                echo "Search profile user:";
+            } ?></td>                                       
                                         <td width="50%">
                                             <input type="text" id="id_txt_texto_nivel_confianza" name="txt_texto_nivel_confianza">
                                         </td>
                                         <td width="5%" align="right">
-                                            <input type="button" id="id_btn_buscar_nivel_confianza" name="btn_buscar_nivel_confianza" value="Buscar">
+                                            <input type="button" id="id_btn_buscar_nivel_confianza" name="btn_buscar_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Buscar";
+            }else{ 
+                echo "`Search";
+            } ?>">
                                         </td>
                                         <td width="17%"></td>
                                     </tr>
@@ -71,16 +83,40 @@
                                     <tr>
                                         <td></td>
                                         <td align="right">                                        
-                                            <input type="button" id="id_btn_add_nivel_confianza" name="btn_add_nivel_confianza" value="Agregar">
-                                            <input type="button" id="id_btn_update_nivel_confianza" name="btn_update_nivel_confianza" value="Modificar" style="display: none">
-                                            <input type="button" id="id_btn_delete_nivel_confianza" name="btn_delete_nivel_confianza" value="Eliminar" style="display: none">
-                                            <input type="button" id="id_btn_clean_nivel_confianza" name="btn_clean_nivel_confianza" value="Limpiar">
-                                            <input type="button" id="id_btn_cancel_nivel_confianza" name="btn_cancel_nivel_confianza" value="Cancelar" style="display: none">
+                                            <input type="button" id="id_btn_add_nivel_confianza" name="btn_add_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Agregar";
+            }else{ 
+                echo "Add";
+            } ?>">
+                                            <input type="button" id="id_btn_update_nivel_confianza" name="btn_update_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Modificar";
+            }else{ 
+                echo "Update";
+            } ?>" style="display: none">
+                                            <input type="button" id="id_btn_delete_nivel_confianza" name="btn_delete_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Eliminar";
+            }else{ 
+                echo "Delete";
+            } ?>" style="display: none">
+                                            <input type="button" id="id_btn_clean_nivel_confianza" name="btn_clean_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Limpiar";
+            }else{ 
+                echo "Clear";
+            } ?>">
+                                            <input type="button" id="id_btn_cancel_nivel_confianza" name="btn_cancel_nivel_confianza" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Cancelar";
+            }else{ 
+                echo "Cancel";
+            } ?>" style="display: none">
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><span style="color: #FFD800">Son campos requeridos (*)</span></td>
+                                        <td colspan="3"><span style="color: #FFD800"><?php if($_SESSION["idioma"]=="es"){
+                echo "Son campos requeridos (*)";
+            }else{ 
+                echo "This fields are required (*)";
+            } ?></span></td>
                                     </tr>
                                 </table>                        
                             </form>                        

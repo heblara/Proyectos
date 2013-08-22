@@ -40,17 +40,37 @@
                 <div id="contents">
 
                     <div id="content_form">
-                        <h2>Registros de Personal</h2>
+                        <h2><?php if($_SESSION["idioma"]=="es"){
+                echo "Registro de personal";
+            }else{ 
+                echo "Personal register";
+            } ?></h2>
                         <div id="id_div_form_buscar">
                             <form id="id_form_buscar_personal" class="form-style">
                                 <table width="100%" >
                                     <tr>
-                                        <td width="20%">Buscar Personal por:</td>   
+                                        <td width="20%"><?php if($_SESSION["idioma"]=="es"){
+                echo "Buscar personal por:";
+            }else{ 
+                echo "Search personal by:";
+            } ?></td>   
                                         <td width="10%">
                                             <select id="id_sel_buscar_personal" name="sel_buscar_personal">
-                                                <option value="">Seleccione...</option>
-                                                <option value="P.Nombres">Nombres</option>                                            
-                                                <option value="P.Apellidos">Apellidos</option>
+                                                <option value=""><?php if($_SESSION["idioma"]=="es"){
+                echo "Seleccionar";
+            }else{ 
+                echo "Select";
+            } ?></option>
+                                                <option value="P.Nombres"><?php if($_SESSION["idioma"]=="es"){
+                echo "Nombres";
+            }else{ 
+                echo "Name";
+            } ?></option>                                            
+                                                <option value="P.Apellidos"><?php if($_SESSION["idioma"]=="es"){
+                echo "Apellidos";
+            }else{ 
+                echo "Lastname";
+            } ?></option>
                                                 <option value="P.DUI">DUI</option>
                                                 <option value="P.NIT">NIT</option>
                                             </select>
@@ -59,7 +79,11 @@
                                             <input type="text" id="id_txt_texto_personal" name="txt_texto_personal">
                                         </td>
                                         <td width="5%" align="right">
-                                            <input type="button" id="id_btn_buscar_personal" name="btn_buscar_personal" value="Buscar">
+                                            <input type="button" id="id_btn_buscar_personal" name="btn_buscar_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Buscar";
+            }else{ 
+                echo "Search";
+            } ?>">
                                         </td>
                                         <td width="17%"></td>
                                     </tr>
@@ -72,7 +96,11 @@
                             <form id="id_registrar_personal" class="form-style">
                                 <table width="100%">
                                     <tr>
-                                        <td>Tipo de Empleado (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Tipo de empleado";
+            }else{ 
+                echo "Employee type";
+            } ?> (*):</td>
                                         <td>
                                             <select id="id_sel_tipo_empleado_personal" name="sel_tipo_empleado_personal">
                                                 <option value="">Seleccione..</option>
@@ -90,7 +118,11 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td width="25%">Nombres (*):</td>
+                                        <td width="25%"><?php if($_SESSION["idioma"]=="es"){
+                echo "Nombres";
+            }else{ 
+                echo "Name";
+            } ?> (*):</td>
                                         <td width="45%">
                                             <input type="hidden" id="id_hidden_cod_personal" name="hidden_cod_personal">
                                             <input type="text" id="id_txt_nombre_personal" name="txt_nombre_personal">
@@ -98,21 +130,33 @@
                                         <td width="30%" aling="left"></td>
                                     </tr>
                                     <tr>
-                                        <td>Apellidos (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Apellidos";
+            }else{ 
+                echo "Lastname";
+            } ?> (*):</td>
                                         <td>
                                             <input type="text" id="id_txt_apellidos_personal" name="txt_apellidos_personal">
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Fecha Ingreso (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Fecha de ingreso";
+            }else{ 
+                echo "Join date:";
+            } ?> (*):</td>
                                         <td>
                                             <input type="text" id="id_txt_fecha_ingreso_personal" name="txt_fecha_ingreso_personal" readonly="true">
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Fecha Nacimiento (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Fecha de nacimiento:";
+            }else{ 
+                echo "Birthdate";
+            } ?> (*):</td>
                                         <td>
                                             <input type="text" id="id_txt_fecha_nacimiento_personal" name="txt_fecha_nacimiento_personal" readonly="true">
                                         </td>
@@ -133,7 +177,11 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Pasaporte:</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Pasaporte";
+            }else{ 
+                echo "Passport";
+            } ?>:</td>
                                         <td>
                                             <input type="text" id="id_txt_pasaporte_personal" name="txt_pasaporte_personal">
                                         </td>
@@ -161,35 +209,55 @@
                                         <td></td>
                                     </tr>                                    
                                     <tr>
-                                        <td>Nacionalidad (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Nacionalidad";
+            }else{ 
+                echo "Nacionality";
+            } ?> (*):</td>
                                         <td>
                                             <input type="text" id="id_txt_nacionalidad_personal" name="txt_nacionalidad_personal">
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Habilidad 1:</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Habilidad";
+            }else{ 
+                echo "Aptitude";
+            } ?> 1:</td>
                                         <td>
                                             <textarea id="id_texta_habilidad1_personal" name="texta_habilidad1_personal"></textarea>
                                         </td>
                                         <td></td>
                                     </tr>                                     
                                     <tr>
-                                        <td>Habilidad 2:</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Habilidad";
+            }else{ 
+                echo "Aptitude";
+            } ?> 2:</td>
                                         <td>
                                             <textarea id="id_texta_habilidad2_personal" name="texta_habilidad2_personal"></textarea>
                                         </td>
                                         <td></td>
                                     </tr>                                     
                                     <tr>
-                                        <td>Habilidad 3:</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Habilidad";
+            }else{ 
+                echo "Aptitude";
+            } ?> 3:</td>
                                         <td>
                                             <textarea id="id_texta_habilidad3_personal" name="texta_habilidad3_personal"></textarea>
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Salario Mensual (*):</td>
+                                        <td><?php if($_SESSION["idioma"]=="es"){
+                echo "Salario mensual";
+            }else{ 
+                echo "Monthly salary";
+            } ?>(*):</td>
                                         <td>
                                             <input type="text" id="id_txt_salario_personal" name="txt_salario_personal">
                                         </td>
@@ -205,11 +273,31 @@
                                     <tr>
                                         <td></td>
                                         <td align="right">                                        
-                                            <input type="button" id="id_btn_add_personal" name="btn_add_personal" value="Agregar">
-                                            <input type="button" id="id_btn_update_personal" name="btn_update_personal" value="Modificar" style="display: none">
-                                            <input type="button" id="id_btn_delete_personal" name="btn_delete_personal" value="Eliminar" style="display: none">
-                                            <input type="button" id="id_btn_clean_personal" name="btn_clean_personal" value="Limpiar">
-                                            <input type="button" id="id_btn_cancel_personal" name="btn_cancel_personal" value="Cancelar" style="display: none">
+                                            <input type="button" id="id_btn_add_personal" name="btn_add_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Agregar";
+            }else{ 
+                echo "Add";
+            } ?>">
+                                            <input type="button" id="id_btn_update_personal" name="btn_update_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Modificar";
+            }else{ 
+                echo "Update";
+            } ?>" style="display: none">
+                                            <input type="button" id="id_btn_delete_personal" name="btn_delete_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Eliminar";
+            }else{ 
+                echo "Update";
+            } ?>" style="display: none">
+                                            <input type="button" id="id_btn_clean_personal" name="btn_clean_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Limpiar";
+            }else{ 
+                echo "Clear";
+            } ?>">
+                                            <input type="button" id="id_btn_cancel_personal" name="btn_cancel_personal" value="<?php if($_SESSION["idioma"]=="es"){
+                echo "Cancelar";
+            }else{ 
+                echo "Cancel";
+            } ?>" style="display: none">
                                         </td>
                                         <td></td>
                                     </tr>

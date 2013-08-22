@@ -4,6 +4,18 @@
         <meta charset="utf-8">
         <title>Inicio de Sesión ::: Gestión de Construcción</title>
         <?php include("header.php") ?>
+        <script type="text/javascript">
+            function cambiaridioma(lang){
+                //alert(lang);
+                if(lang=="en"){
+                    document.getElementById('errorUser').innerHTML="Type your username";
+                    document.getElementById('errorPwd').innerHTML="Type your password";
+                }else if(lang=="es"){
+                    document.getElementById('errorUser').innerHTML="Digite su usuario";
+                    document.getElementById('errorPwd').innerHTML="Digite su contrase&ntilde;a";
+                }
+            }
+        </script>
         <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
         <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
     </head>
@@ -46,7 +58,13 @@
                     </li>
                     <?php
                     if (isset($_SESSION["autenticado"])) {
-                        echo "<h2>Usted se ha autenticado como: " . $_SESSION['usuario'] . "</h2>";
+                        if(isset($_SESSION["idioma"])){
+                            if($_SESSION["idioma"]=="es"){
+                                echo "<h2>Usted se ha autenticado como: " . $_SESSION['usuario'] . "</h2>";
+                            }else{
+                                echo "<h2>You are logged as: " . $_SESSION['usuario'] . "</h2>";
+                            }
+                        }
                     } else {
                         ?>
                         <li class="col">
@@ -62,20 +80,20 @@
                                     <label for="textfield3"></label>
                                     <span id="sprytextfield1">
                                         <input name="textuser" type="text" class="highlight" id="textfield3">
-                                        <span class="textfieldRequiredMsg">Digite su Usuario.</span></span></p>
+                                        <span class="textfieldRequiredMsg" id='errorUser'>Digite su Usuario.</span></span></p>
                                 <p>&nbsp;</p>
                                 <p>Contraseña:</p>
                                 <p>
                                     <label for="textfield4"></label>
                                     <span id="sprytextfield2">
                                         <input name="textpass" type="password" class="highlight" id="textfield4">
-                                        <span class="textfieldRequiredMsg">Digite su contraseña.</span></span></p>
+                                        <span class="textfieldRequiredMsg" id='errorPwd'>Digite su contraseña.</span></span></p>
                                 <p>&nbsp;</p>
                                 <p>Idioma:</p>
                                 <p>
                                     <label for="textfield4"></label>
                                     <span id="sprytextfield2">
-                                        <select name="lstIdioma" id="lstIdioma">
+                                        <select name="lstIdioma" id="lstIdioma" onchange="cambiaridioma(document.getElementById('lstIdioma').options[document.getElementById('lstIdioma').selectedIndex].value)">
                                             <option value="es" selected="selected">Español</option>
                                             <option value="en">English</option>
                                         </select>
