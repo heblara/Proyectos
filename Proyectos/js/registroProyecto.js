@@ -1,5 +1,86 @@
 $(document).ready(function(){
     
+    $('#id_btn_show_buscar_equipo').click(function(){
+                            
+        /* Mostrando resultados en un dialog*/
+        $( "#id_div_form_buscar_equipo" ).dialog({
+            height      : 350,
+            width       : 950,
+            modal       : true,
+            draggable   : false,
+            resizable   : false,
+            title       : 'Busqueda de equipo'  
+        });       
+    });
+    
+    
+    
+    $('#id_btn_buscar_equipo').click(function(){
+        
+        var $id_txt_texto_equipo      =       $('#id_txt_buscar_equipo').val();
+        
+        if($id_txt_texto_equipo!=""){
+            $('#id_result_busqueda_equipo').html('<img src="images/ajax-loader.gif">');
+            
+                   
+            $.ajax
+            ({
+                type            :   'POST',
+                url             :   'controlador/registroProyecto.ctrl.php?accion=5',
+                data            :   $('#id_form_buscar_equipo').serialize(), 
+                dataType        :   'json',
+                contentType     :   'application/x-www-form-urlencoded; charset=UTF-8', //Tipo de contenido que se enviara
+                success         :   function(data)
+                {
+                    if(data.bandera==1){
+                        
+                        if(data.total_rows>0){
+                            var table='<table id="id_table_equipo" class="ui-widget ui-widget-content" width="90%">';
+                            table+='<thead>';
+                            table+='<tr class="ui-widget-header ">';
+                            table+='<th width="5%">#</th>';
+                            table+='<th style="display:none">id</th>';                                                                                    
+                            table+='<th width="30%">Nombre</th>';                                                        
+                            table+='<th width="50%">Descripcion de Actividad</th>';                                                        
+                            table+='<th width="15%">OPCIONES</th>';
+                            table+='</tr>';
+                            table+='</thead>';
+                            table+='<tbody>';
+                            var $razon;
+                            
+                            $.each(data.rows, function(index,value){
+                                table+='<tr>';
+                                table+='<td>'+(index+1)+'</td>';
+                                table+='<td style="display:none">'+value.id+'</td>';                                                                                                                               
+                                table+='<td>'+value.nombre+'</td>';                   
+                                table+='<td>'+value.actividad+'</td>';                   
+                                
+                                table+='<td><input type="button" value="Seleccionar" onclick="show_information_equipo(this)"></td>';
+                                table+='</tr>';
+                            });
+                            table+='</tbody>';
+                            table+="</table>";
+                        
+                            $('#id_result_busqueda_equipo').html(table);
+                            $("#id_table_equipo tbody tr:even").addClass('even'); // filas impares
+                            $("#id_table_equipo tbody tr:odd").addClass('odd'); // filas pares
+                        }else{
+                            $('#id_result_busqueda_equipo').html('<p>No se encontraron coicidencias</p>');
+                        }
+                    }else{
+                        $alert('Error',data.mensaje,130,200);
+                        $('#id_result_busqueda_equipo').html('');
+                    }
+                }
+            });
+        
+        }else{
+            $('#id_result_busqueda_equipo').html('');
+            $alert('Error','Debe de llenar todos los campos de busqueda',150,200);
+        }
+    });
+    
+    
     
     $('#id_btn_buscar_proyecto').click(function(){
                             
@@ -37,7 +118,9 @@ $(document).ready(function(){
                             table+='<th width="5%">#</th>';
                             table+='<th style="display:none">id</th>';                                                        
                             table+='<th style="display:none">idTipoProyecto</th>';   
-                            table+='<th width="30%">Tipo de Proyecto</th>';                                                        
+                            table+='<th style="display:none">idEquipos</th>';   
+                            table+='<th width="15%">Equipo</th>';                                                        
+                            table+='<th width="15%">Tipo de Proyecto</th>';                                                        
                             table+='<th width="30%">Nombre</th>';                            
                             table+='<th width="8%">Fecha de Inicio</th>';                            
                             table+='<th width="8%">Fecha de Finalizacion</th>';                            
@@ -53,6 +136,8 @@ $(document).ready(function(){
                                 table+='<td>'+(index+1)+'</td>';
                                 table+='<td style="display:none">'+value.id+'</td>';                                                               
                                 table+='<td style="display:none">'+value.idTipoProyecto+'</td>';                                                               
+                                table+='<td style="display:none">'+value.idEquipos+'</td>';                                                               
+                                table+='<td>'+value.label_equipo+'</td>';
                                 table+='<td>'+value.label_proyecto+'</td>';                   
                                 table+='<td>'+value.nombre+'</td>';                   
                                 table+='<td>'+value.fecha_ini+'</td>';                   
@@ -163,6 +248,8 @@ $(document).ready(function(){
         $('#id_txt_fecha_fin_proyecto').val('');
         $('#id_txt_costo_proyecto').val('');
         $('#id_sel_tipo_proyecto').val('');
+        $('#id_hidden_cod_personal_equipo').val('');            
+        $('#id_txt_nombre_equipo_personal_equipo').val('');
         $('#id_btn_cancel_proyecto').trigger('click');
     });
     
@@ -203,10 +290,11 @@ $(document).ready(function(){
         $nombre=$('#id_txt_nombre_proyecto').val();
         $fecha_ini=$('#id_txt_fecha_inicio_proyecto').val();
         $costo=$('#id_txt_costo_proyecto').val();
+        $id_hidden_cod_personal_equipo=$('#id_hidden_cod_personal_equipo').val();
         $respuesta=true;
         //verificacion de campos vacios
         
-        if($idtipoproyecto=="" || $nombre=="" || $fecha_ini=="" || $costo==""){
+        if($idtipoproyecto=="" || $nombre=="" || $fecha_ini=="" || $costo=="" || $id_hidden_cod_personal_equipo==""){
             $alert('Error','Debe de llenar todos los campos requeridos',130,200);            
             $respuesta=false;
         }
@@ -255,14 +343,15 @@ $(document).ready(function(){
 });
 
 var show_information=function(row){
-    
                                 
     var id=$(row).parents('tr').find('td').eq(1).html();
     var idTipoProyecto=$(row).parents('tr').find('td').eq(2).html();
-    var nombre=$(row).parents('tr').find('td').eq(4).html();
-    var fecha_ini=$(row).parents('tr').find('td').eq(5).html();
-    var fecha_fin=$(row).parents('tr').find('td').eq(6).html();
-    var costo=$(row).parents('tr').find('td').eq(7).html();
+    var idEquipo=$(row).parents('tr').find('td').eq(3).html();
+    var label_equipo=$(row).parents('tr').find('td').eq(4).html();
+    var nombre=$(row).parents('tr').find('td').eq(6).html();
+    var fecha_ini=$(row).parents('tr').find('td').eq(7).html();
+    var fecha_fin=$(row).parents('tr').find('td').eq(8).html();
+    var costo=$(row).parents('tr').find('td').eq(9).html();
     
     //clean de campos
     $('#id_btn_clean_proyecto').trigger('click');
@@ -270,6 +359,8 @@ var show_information=function(row){
     $('#id_sel_tipo_proyecto').val(idTipoProyecto);
     $('#id_hidden_cod_proyecto').val(id);
     $('#id_txt_nombre_proyecto').val(nombre);
+    $('#id_hidden_cod_personal_equipo').val(idEquipo);
+    $('#id_txt_nombre_equipo_personal_equipo').val(label_equipo);
     $('#id_txt_fecha_inicio_proyecto').val(fecha_ini);
     $('#id_txt_fecha_fin_proyecto').val(fecha_fin);
     $('#id_txt_costo_proyecto').val(costo);
@@ -281,4 +372,17 @@ var show_information=function(row){
     $('#id_table_proyecto').hide();
    
     $( '#id_result_busqueda_proyecto' ).dialog( "close" );
+} 
+
+
+var show_information_equipo=function(row){
+    
+    var id=$(row).parents('tr').find('td').eq(1).html();
+    var nombre=$(row).parents('tr').find('td').eq(2).html();
+      
+    $('#id_hidden_cod_personal_equipo').val(id);
+    $('#id_txt_nombre_equipo_personal_equipo').val(nombre);
+    
+   
+    $( '#id_div_form_buscar_equipo' ).dialog( "close" );
 } 

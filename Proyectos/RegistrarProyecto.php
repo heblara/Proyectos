@@ -43,6 +43,27 @@
 
                     <div id="content_form">
                         <h2>Registros de Proyectos</h2>
+
+                        <div id="id_div_form_buscar_equipo" style="display: none">
+                            <form id="id_form_buscar_equipo" class="form-style">
+                                <table width="100%" border="1" class="table-style">
+                                    <tr>
+                                        <td width="20%">Nombre del equipo de trabajo:</td>   
+                                        <td width="70%">
+                                            <input type="text" id="id_txt_buscar_equipo" name="txt_buscar_equipo">
+                                        </td>                                        
+                                        <td width="10%" align="right">
+                                            <input type="button" id="id_btn_buscar_equipo" name="btn_buscar_equipo" value="Buscar">
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </form>
+                            <div id="id_result_busqueda_equipo" align="center" style="overflow-y:auto; "></div>
+                        </div>
+
+
+
                         <div id="id_div_form_buscar">
                             <form id="id_form_buscar_proyecto" class="form-style">
                                 <table width="100%" >
@@ -60,15 +81,27 @@
                             </form>
                             <div id="id_result_busqueda_proyecto" align="center" style="overflow-y:auto; "></div>
                         </div>
+
+
+
                         <div id="id_div_form_registrar">
 
                             <form id="id_registrar_proyecto" class="form-style">
                                 <table width="100%">                                
+
+                                    <tr>
+                                        <td width="25%">Equipo seleccionado (*):</td>
+                                        <td width="45%">
+                                            <input type="hidden" id="id_hidden_cod_personal_equipo" name="hidden_cod_personal_equipo">                                            
+                                            <input type="text" id="id_txt_nombre_equipo_personal_equipo" name="nombre_equipo_personal_equipo" placeholder="Presione el boton buscar para seleccionar un equipo" readonly="false" style="width: 70%">
+                                            <input type="button" id="id_btn_show_buscar_equipo" name="btn_show_buscar_equipo" value="Buscar Equipo de Trabajo" style="float:right;position:absolute;">                                            
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td width="25%">Tipo de Proyecto (*):</td>
                                         <td width="45%">
                                             <input type="hidden" id="id_hidden_cod_proyecto" name="hidden_cod_proyecto">
-                                            <select id="id_sel_tipo_proyecto" name="sel_tipo_proyecto" onchange="mostrartipoproyecto()">
+                                            <select id="id_sel_tipo_proyecto" name="sel_tipo_proyecto">
                                                 <option value="">Seleccione..</option>
                                                 <?php
                                                 $query = mysql_query("SELECT * FROM TipoProyecto ORDER BY Nombre ASC", $connection);

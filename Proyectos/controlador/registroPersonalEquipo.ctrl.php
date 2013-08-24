@@ -6,31 +6,25 @@ require("../data.php");
 $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
 
 $idPersonal = isset($_POST['txt_idPersonal']) ? $_POST['txt_idPersonal'] : '';
-$idProyecto = isset($_POST['txt_idProyecto']) ? $_POST['txt_idProyecto'] : '';
+$idEquipos = isset($_POST['txt_idEquipo']) ? $_POST['txt_idEquipo'] : '';
 
 
 
 switch ($accion) {
-    case 1: //buscar personal_proyecto        
-        $texto = isset($_POST['txt_buscar_proyecto']) ? $_POST['txt_buscar_proyecto'] : '';
+    case 1: //buscar personal_equipo        
+        $texto = isset($_POST['txt_buscar_equipo']) ? $_POST['txt_buscar_equipo'] : '';
         $array_data = array();
         if ($texto != '') {
-            $sql = "SELECT p.*,tp.Nombre label_proyecto FROM Proyectos p ";
-            $sql .= "inner join TipoProyecto tp ";
-            $sql .= "on p.idTipoProyecto =  tp.idTipoProyecto ";
-            $sql.="WHERE p.NombreProyecto like '%" . $texto . "%' ORDER BY p.NombreProyecto ASC";
-
+            $sql = "SELECT * FROM Equipos ";
+            $sql.=" WHERE nombre like '%" . $texto . "%' ORDER BY nombre ASC";
+            mysql_query("SET NAMES 'utf8'");
             $query = mysql_query($sql, $connection);
             $i = 0;
             while ($row = mysql_fetch_array($query)) {
                 $array_data[$i] = array(
-                    "id" => $row["idProyectos"],
-                    "idTipoProyecto" => $row["idTipoProyecto"],
-                    "label_proyecto" => $row["label_proyecto"],
-                    "nombre" => $row["NombreProyecto"],
-                    "fecha_ini" => $row["FechaInicio"],
-                    "fecha_fin" => $row["FechaFin"],
-                    "costo" => $row["CostoProyectado"]
+                    "id" => $row["idEquipos"],
+                    "nombre" => $row["nombre"],
+                    "actividad" => $row["actividad"]
                 );
                 $i++;
             }
@@ -85,15 +79,15 @@ switch ($accion) {
 
     case 3:
 
-        $sql = "insert into Proyectos_has_Personal (idPersonal,idProyecto) ";
-        $sql.="values(" . $idPersonal . "," . $idProyecto . ")";
+        $sql = "insert into equipo_personal (idPersonal,idEquipos) ";
+        $sql.="values(" . $idPersonal . "," . $idEquipos . ")";
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
-            $mensaje = "PERSONAL AGREGADO AL PROYECTO";
+            $mensaje = "PERSONAL AGREGADO AL EQUIPO DE TRABAJO";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR EL PERSONAL AL PROYECTO. INTENTE DE NUEVO " . $sql;
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR EL PERSONAL AL EQUIPO DE TRABAJO. INTENTE DE NUEVO ";
             $bandera = 0;
         }
 
@@ -104,14 +98,14 @@ switch ($accion) {
 
     case 4:
 
-        //eliminando al personal_proyecto
-        $sql = "DELETE FROM Proyectos_has_Personal where idPersonal=" . $idPersonal . " AND idProyecto=" . $idProyecto;
+        //eliminando al personal_equipo
+        $sql = "DELETE FROM equipo_personal where idPersonal=" . $idPersonal . " AND idEquipos=" . $idEquipos;
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
-            $mensaje = "PERSONAL ELIMINADO DEL PROYECTO";
+            $mensaje = "PERSONAL ELIMINADO DEL EQUIPO DE TRABAJO";
             $bandera = 1;
         } else {
-            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR EL PERSONAL. INTENTE DE NUEVO";
+            $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE ELIMINAR EL PERSONAL DEL EQUIPO DE TRABAJO. INTENTE DE NUEVO";
             $bandera = 0;
         }
 
@@ -123,21 +117,22 @@ switch ($accion) {
 
     case 5:
 
-        $texto = isset($_POST['txt_id_proyecto']) ? $_POST['txt_id_proyecto'] : '';
+        $texto = isset($_POST['txt_id_equipo']) ? $_POST['txt_id_equipo'] : '';
         $array_data = array();
         if ($texto != '') {
-            $sql = "SELECT a.idProyecto,a.idPersonal,CONCAT(b.Nombres,' ',b.Apellidos) nom from Proyectos_has_Personal a ";
+            $sql = "SELECT a.idPersonal,a.idEquipos,CONCAT(b.Nombres,' ',b.Apellidos) nom from equipo_personal a ";
             $sql.=" INNER JOIN Personal b ";
             $sql.=" ON a.idPersonal=b.idPersonal ";
-            $sql.="WHERE a.idProyecto=" . $texto;
+            $sql.=" WHERE a.idEquipos=" . $texto;
 
             $query = mysql_query($sql, $connection);
-            $i = 0;
+            
+            $i = 0;            
             while ($row = mysql_fetch_array($query)) {
                 $array_data[$i] = array(
                     "id" => $row["idPersonal"],
                     "nombre" => $row["nom"],
-                    "idProyecto" => $row["idProyecto"]
+                    "idEquipo" => $row["idEquipos"]
                 );
                 $i++;
             }
@@ -150,8 +145,7 @@ switch ($accion) {
         } else {
             $jsonData["mensaje"] = "FALTAN CAMPOS POR LLENAR";
             $jsonData["bandera"] = 0;
-        }
-        sleep(1);
+        }        
         break;
 }
 

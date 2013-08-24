@@ -12,8 +12,9 @@
            
 
             <li><a href="RegistrarTipoProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Tipo de proyecto";}else{ echo "Project Type"; }?></span></a></li>
-            <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>
-            <li><a href="RegistrarPersonalProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Registrar Personal a Proyecto";}else{ echo "Project Personnel Register"; }?></span></a></li>
+            <li><a href="RegistrarEquipos.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Equipos";}else{ echo "Teams"; }?></span></a></li>
+            <li><a href="RegistrarPersonalEquipo.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Registrar Personal a Equipo";}else{ echo "Team Personnel Register"; }?></span></a></li>
+            <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>            
             <li><a href="RegistrarEntradas.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Entradas";}else{ echo "Entries"; }?></span></a></li>
             <li><a href="RegistrarSalidas.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Salidas";}else{ echo "Outputs"; }?></span></a></li>
            <li><a href="Reportes.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nuevo reporte";}else{ echo "New report"; }?></span></a></li>

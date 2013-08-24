@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/jquery-ui.css" />                        
         <script src="js/jquery-1.9.1.js"></script>
         <script src="js/jquery-ui.js"></script>                     
-        <script src="js/registroPersonalProyecto.js"></script>                   
+        <script src="js/registroPersonalEquipo.js"></script>                   
 
 
         <?php
@@ -42,24 +42,24 @@
                 <div id="contents">
 
                     <div id="content_form">
-                        <h2>Registros del Personal asignados a Proyectos</h2>
+                        <h2>Registros del Personal asignados a Equipos de Trabajo</h2>
 
                         <div id="id_div_form_buscar" style="display: none">
-                            <form id="id_form_buscar_proyecto" class="form-style">
+                            <form id="id_form_buscar_equipo" class="form-style">
                                 <table width="100%" border="1" class="table-style">
                                     <tr>
-                                        <td width="20%">Nombre de proyecto:</td>   
+                                        <td width="20%">Nombre del equipo de trabajo:</td>   
                                         <td width="70%">
-                                            <input type="text" id="id_txt_buscar_proyecto" name="txt_buscar_proyecto">
+                                            <input type="text" id="id_txt_buscar_equipo" name="txt_buscar_equipo">
                                         </td>                                        
                                         <td width="10%" align="right">
-                                            <input type="button" id="id_btn_buscar_proyecto" name="btn_buscar_proyecto" value="Buscar">
+                                            <input type="button" id="id_btn_buscar_equipo" name="btn_buscar_equipo" value="Buscar">
                                         </td>
 
                                     </tr>
                                 </table>
                             </form>
-                            <div id="id_result_busqueda_proyecto" align="center" style="overflow-y:auto; "></div>
+                            <div id="id_result_busqueda_equipo" align="center" style="overflow-y:auto; "></div>
                         </div>
 
 
@@ -67,7 +67,7 @@
                             <form id="id_form_buscar_personal" class="form-style">
                                 <table width="100%" border="1" class="table-style">
                                     <tr>
-                                        <td width="20%">Nombre de empleado:</td>   
+                                        <td width="20%">Nombre del empleado:</td>   
                                         <td width="70%">
                                             <input type="text" id="id_txt_buscar_personal" name="txt_buscar_personal">
                                         </td>                                        
@@ -85,15 +85,15 @@
 
 
 
-                            <form id="id_registrar_personal_proyecto" class="form-style">
+                            <form id="id_registrar_personal_equipo" class="form-style">
                                 <table width="100%">                                
                                     <tr>
-                                        <td width="25%">Proyecto seleccionado (*):</td>
+                                        <td width="25%">Equipo seleccionado (*):</td>
                                         <td width="45%">
-                                            <input type="hidden" id="id_hidden_cod_personal_proyecto" name="hidden_cod_personal_proyecto">
-                                            <input type="hidden" id="id_hidden_cod_tipo_proyecto_personal_proyecto" name="hidden_cod_tipo_proyecto_personal_proyecto">
-                                            <input type="text" id="id_txt_nombre_proyecto_personal_proyecto" name="nombre_proyecto_personal_proyecto" placeholder="Presione el boton buscar para seleccionar un proyecto" enabled="false" style="width: 70%">
-                                            <input type="button" id="id_btn_show_buscar_proyecto" name="btn_show_buscar_proyecto" value="Buscar Proyecto" style="float:right;position:absolute;">
+                                            <input type="hidden" id="id_hidden_cod_personal_equipo" name="hidden_cod_personal_equipo">
+                                            <input type="hidden" id="id_hidden_cod_tipo_equipo_personal_equipo" name="hidden_cod_tipo_equipo_personal_equipo">
+                                            <input type="text" id="id_txt_nombre_equipo_personal_equipo" name="nombre_equipo_personal_equipo" placeholder="Presione el boton buscar para seleccionar un equipo" readonly="false" style="width: 70%">
+                                            <input type="button" id="id_btn_show_buscar_equipo" name="btn_show_buscar_equipo" value="Buscar Equipo de Trabajo" style="float:right;position:absolute;">
                                         </td>        
                                         <td width="30%" aling="left"></td>
                                     </tr>                                                                   
