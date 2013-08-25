@@ -25,8 +25,6 @@ switch ($accion) {
                 );
                 $i++;
             }
-
-
             $jsonData["mensaje"] = "RECUPERANDO DATOS";
             $jsonData["bandera"] = 1;
             $jsonData["total_rows"] = $i;

@@ -99,7 +99,7 @@ switch ($accion) {
                 $i++;
             }
             if ($contrasena <> "") {
-                $campos[$i] = " Contrasena='" . $contrasena . "'";
+                $campos[$i] = " Contrasena=md5('" . $contrasena . "')";
                 $i++;
             }
 

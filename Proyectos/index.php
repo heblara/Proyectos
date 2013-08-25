@@ -4,6 +4,11 @@
         <meta charset="utf-8">
         <title>Inicio de Sesión ::: Gestión de Construcción</title>
         <?php include("header.php") ?>
+        <script type="text/javascript" src="lib/alertify.js"></script>
+        <link rel="stylesheet" href="themes/alertify.core.css" />
+        <link rel="stylesheet" href="themes/alertify.default.css" />
+        <script src="lib/eventos.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript">
             function cambiaridioma(lang){
                 //alert(lang);
@@ -18,6 +23,29 @@
         </script>
         <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
         <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+        <script>
+        $(document).ready(function(){                   
+            $("#submit").click(function(){
+                var formulario = $("#frmLogin").serializeArray();
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: "logear.php",
+                    data: formulario,
+                }).done(function(respuesta){
+                    //$("#mensaje").html(respuesta.mensaje);
+                    if(respuesta.mensaje==1){
+                        error("Por favor llene todos los campos");
+                    }else if(respuesta.mensaje==2){
+                        error("Combinacion de usuario y contraseña incorrecta");
+                    }else if(respuesta.mensaje==3){
+                        ok("Datos correctos");
+                        location.href="?mod=home";
+                    }
+                });
+            });
+        });
+        </script>
     </head>
 
     <body class="home">
@@ -72,7 +100,8 @@
                         </li>
 
                         <li class="col">
-                            <form name="form4" method="post" action="logear.php">
+                            <form name="form4" id="frmLogin">
+                            <!--<form name="form4" method="post" action="logear.php">-->
                                 <p>
                                     <label for="textfield3"></label>
                                     Usuario:</p>
@@ -100,7 +129,7 @@
                                         <span class="textfieldRequiredMsg">Elija un idioma.</span></p>
                                 <p>&nbsp;</p>
                                 <p>
-                                    <input type="submit" name="button" id="button" value="Ingresar">
+                                    <input type="button" name="button" id="submit" value="Ingresar">
                                 </p>
                             </form>
                         </li>
