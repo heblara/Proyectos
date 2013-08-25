@@ -1,6 +1,6 @@
-
 <?php
 include("data.php");
+ob_start();
 require_once("dompdf/dompdf_config.inc.php");
 $consulta="SELECT * FROM personal";
 $html="";
@@ -49,4 +49,5 @@ $dompdf->set_paper("letter", "portrait");
 $dompdf->render();
 $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 exit(0);
+ob_end_flush();
 ?>

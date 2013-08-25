@@ -12,11 +12,12 @@
            
 
             <li><a href="RegistrarTipoProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Tipo de proyecto";}else{ echo "Project Type"; }?></span></a></li>
+            <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>
             <li><a href="RegistrarEquipos.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Equipos";}else{ echo "Teams"; }?></span></a></li>
             <li><a href="RegistrarPersonalEquipo.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Registrar Personal a Equipo";}else{ echo "Team Personnel Register"; }?></span></a></li>
-            <li><a href="RegistrarProyecto.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Proyecto";}else{ echo "Project"; }?></span></a></li>            
             <li><a href="RegistrarEntradas.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Entradas";}else{ echo "Entries"; }?></span></a></li>
             <li><a href="RegistrarSalidas.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Salidas";}else{ echo "Outputs"; }?></span></a></li>
+
            <li><a href="Reportes.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Nuevo reporte";}else{ echo "New report"; }?></span></a></li>
             <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Cat&aacute;logos";}else{ echo "Catalogs"; }?></a>
                 <ul>
@@ -31,14 +32,12 @@
             </li>
         </ul>
     </li>
-    <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
     <li><a href="Portafolio.php"><?php if($_SESSION["idioma"]=="es"){echo "Portafolio";}else{ echo "Portfolio"; }?></a></li>
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Herramientas";}else{ echo "Tools"; }?></a>
         <ul>
             <li><a href="CambiarIdioma.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
-            <li><a href="#"><span> <?php if($_SESSION["idioma"]=="es"){echo "Actualizar";}else{ echo "Refresh"; }?> </span></a></li>
-            <li><a href="#"><span>Video Conferencia</span></a></li>
-            <li><a href="#"><span> <?php if($_SESSION["idioma"]=="es"){echo "Pagina web";}else{ echo "Website"; }?></span></a></li>
+            <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
+            <li><a href="http://www.gestionconstruccion.info"><span> <?php if($_SESSION["idioma"]=="es"){echo "Nosotros";}else{ echo "About us"; }?></span></a></li>
         </ul>
     </li>
     <li><a href="Logout.php"><?php if($_SESSION["idioma"]=="es"){echo "Salir";}else{ echo "Exit"; }?></a></li>

@@ -133,6 +133,13 @@
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
+                                    <td width="25%">Descripcion (*):</td>
+                                    <td width="45%">                                        
+                                        <input type="text" id="id_txt_descripcion_salidas" name="txt_descripcion_salidas"> 
+                                    </td>        
+                                    <td width="30%" aling="left"></td>
+                                </tr>
+                                <tr>
                                     <td width="25%">Cantidad Utilizada (*):</td>
                                     <td width="45%">                                        
                                         <input type="text" id="id_txt_cantidad_salidas" name="txt_cantidad_salidas"> 

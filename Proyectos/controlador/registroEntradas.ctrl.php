@@ -9,6 +9,7 @@ $txt_fecha_compra_entradas = isset($_POST['txt_fecha_compra_entradas']) ? $_POST
 $txt_cantidad_producto_entradas = isset($_POST['txt_cantidad_producto_entradas']) ? $_POST['txt_cantidad_producto_entradas'] : '';
 $txt_valor_producto_entradas = isset($_POST['txt_valor_producto_entradas']) ? $_POST['txt_valor_producto_entradas'] : '';
 $txt_porcentaje_entradas = isset($_POST['txt_porcentaje_entradas']) ? $_POST['txt_porcentaje_entradas'] : '';
+$txt_descripcion_entradas = isset($_POST['txt_descripcion_entradas']) ? $_POST['txt_descripcion_entradas'] : '';
 $txt_calculo_iva_entradas = isset($_POST['txt_calculo_iva_entradas']) ? $_POST['txt_calculo_iva_entradas'] : '';
 $txt_stock_minimo_entradas = isset($_POST['txt_stock_minimo_entradas']) ? $_POST['txt_stock_minimo_entradas'] : '';
 $txt_stock_maximo_entradas = isset($_POST['txt_stock_maximo_entradas']) ? $_POST['txt_stock_maximo_entradas'] : '';
@@ -32,6 +33,7 @@ switch ($accion) {
                 $array_data[$i] = array(
                     "id" => $row["idEntradas"],
                     "idProveedor" => $row["idProveedor"],
+                    "Descripcion" => $row["Descripcion"],
                     "FechaCompra" => $row["FechaCompra"],
                     "CantidadProducto" => $row["CantidadProducto"],
                     "ValorProducto" => $row["ValorProducto"],
@@ -60,8 +62,8 @@ switch ($accion) {
 
     case 2: //adicionando un nuevo registro
 
-        $sql = "insert into Entradas (idProveedor,FechaCompra,CantidadProducto,ValorProducto,PorcentajeIVA,CalculoIVA,StockMinimo,StockMaximo,Anulada) ";
-        $sql.="values(" . $sel_proveedores_entradas . ",'" . $txt_fecha_compra_entradas . "'," . $txt_cantidad_producto_entradas . ",'" . $txt_valor_producto_entradas . "',";
+        $sql = "insert into Entradas (idProveedor,Descripcion,FechaCompra,CantidadProducto,ValorProducto,PorcentajeIVA,CalculoIVA,StockMinimo,StockMaximo,Anulada) ";
+        $sql.="values(" . $sel_proveedores_entradas . ",'".$txt_descripcion_entradas."','" . $txt_fecha_compra_entradas . "'," . $txt_cantidad_producto_entradas . ",'" . $txt_valor_producto_entradas . "',";
         $sql.="" . $txt_porcentaje_entradas . ",'" . $txt_calculo_iva_entradas . "'," . $txt_stock_minimo_entradas . "," . $txt_stock_maximo_entradas . "," . $ckd_anulada_entradas . ")";
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
@@ -72,7 +74,7 @@ switch ($accion) {
             if($_SESSION["idioma"]=="es"){
                 $mensaje = "SE PRODUJO UN ERROR AL MOMENTO DE REGISTRAR LA ENTRADA. INTENTE DE NUEVO ";
             }else{ 
-                $mensaje = "AN ERROR HAS OCURRED AT THE MOMENT  OF ADD THE TYPE OF EMPLOYEE. PLEASE TRY AGAIN";
+                $mensaje = "AN ERROR HAS OCURRED AT THE MOMENT  OF ADD THE ENTRY. PLEASE TRY AGAIN";
             }
             $bandera = 0;
         }
@@ -84,7 +86,7 @@ switch ($accion) {
     case 3: //modificando la entradas
 
 
-        $sql = "UPDATE Entradas SET FechaCompra='" . $txt_fecha_compra_entradas . "',";
+        $sql = "UPDATE Entradas SET Descripcion='".$txt_descripcion_entradas."', FechaCompra='" . $txt_fecha_compra_entradas . "',";
         $sql.="CantidadProducto=" . $txt_cantidad_producto_entradas . ",ValorProducto='" . $txt_valor_producto_entradas . "',";
         $sql.="PorcentajeIVA=" . $txt_porcentaje_entradas . ",CalculoIVA='" . $txt_calculo_iva_entradas . "',";
         $sql.="StockMinimo=" . $txt_stock_minimo_entradas . ",StockMaximo=" . $txt_stock_maximo_entradas . ",Anulada=" . $ckd_anulada_entradas;

@@ -91,6 +91,13 @@
                                     <td width="30%" aling="left"></td>
                                 </tr>
                                 <tr>
+                                    <td width="25%">Descripcion (*):</td>
+                                    <td width="45%">                                        
+                                        <input type="text" id="id_txt_descripcion_entradas" name="txt_descripcion_entradas"> 
+                                    </td>        
+                                    <td width="30%" aling="left"></td>
+                                </tr>
+                                <tr>
                                     <td width="25%">Cantidad de Producto (*):</td>
                                     <td width="45%">                                        
                                         <input type="text" id="id_txt_cantidad_producto_entradas" name="txt_cantidad_producto_entradas"> 

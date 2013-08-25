@@ -6,7 +6,9 @@ $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
 $cod_salidas = isset($_POST['hidden_cod_salidas']) ? $_POST['hidden_cod_salidas'] : '';
 $hidden_cod_empleado_salidas = isset($_POST['hidden_cod_empleado_salidas']) ? $_POST['hidden_cod_empleado_salidas'] : '';
 $hidden_cod_proyecto_salidas = isset($_POST['hidden_cod_proyecto_salidas']) ? $_POST['hidden_cod_proyecto_salidas'] : '';
+$txt_descripcion_salidas = isset($_POST['txt_descripcion_salidas']) ? $_POST['txt_descripcion_salidas'] : '';
 $txt_cantidad_salidas = isset($_POST['txt_cantidad_salidas']) ? $_POST['txt_cantidad_salidas'] : '';
+
 $txt_fecha_salidas = isset($_POST['txt_fecha_salidas']) ? $_POST['txt_fecha_salidas'] : '';
 
 switch ($accion) {
@@ -126,8 +128,8 @@ switch ($accion) {
         break;
     case 4: //adicionando un nuevo registro
 
-        $sql = "insert into Salidas (idPersonal,idProyecto,CantidadUtilizada,FechaSalida) ";
-        $sql.="values(" . $hidden_cod_empleado_salidas . "," . $hidden_cod_proyecto_salidas . "," . $txt_cantidad_salidas . ",'" . $txt_fecha_salidas . "')";
+        $sql = "insert into salidas (idPersonal,idProyecto,Descripcion,CantidadUtilizada,FechaSalida) ";
+        $sql.="values(" . $hidden_cod_empleado_salidas . "," . $hidden_cod_proyecto_salidas . ",'".$txt_descripcion_salidas."'," . $txt_cantidad_salidas . ",'" . $txt_fecha_salidas . "')";
         mysql_query("SET NAMES 'utf8'");
         $respuesta = mysql_query($sql, $connection);
         if ($respuesta) {
