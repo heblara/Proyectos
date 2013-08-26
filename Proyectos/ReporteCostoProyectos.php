@@ -32,10 +32,12 @@ $costo=0;
 while($proyecto=mysql_fetch_assoc($execute)){
   $costo=0;
   $conEquipo=mysql_query("select * from equipos as e INNER JOIN equipo_personal as ep on e.idEquipos=ep.idEquipos where e.idEquipos=".$proyecto["idEquipos"]);
-  while ($equipo=mysql_fetch_assoc($conEquipo)) {
-    $conSueldo=mysql_query("select SalarioMensual from personal where idPersonal=".$equipo["idPersonal"]);
-    $sueldo=mysql_fetch_assoc($conSueldo);
-    $costo=$costo+$sueldo["SalarioMensual"];
+  if(mysql_num_rows($conEquipo)>0){
+    while ($equipo=mysql_fetch_assoc($conEquipo)) {
+      $conSueldo=mysql_query("select SalarioMensual from personal where idPersonal=".$equipo["idPersonal"]);
+      $sueldo=mysql_fetch_assoc($conSueldo);
+      $costo=$costo+$sueldo["SalarioMensual"];
+    }
   }
 
   $i++;
@@ -59,6 +61,7 @@ while($proyecto=mysql_fetch_assoc($execute)){
   $html.="</tr>";
 }
 $html.="</table>";
+//echo $html;
 $dompdf = new DOMPDF();
 $dompdf->load_html($html);
 $dompdf->set_paper("letter", "portrait");

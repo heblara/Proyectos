@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include("seguridad.php");
 @session_start();
 require("data.php");
@@ -80,3 +81,4 @@ mysql_query("SET NAMES 'UTF8'")
 		<!-- SKIN -->
 		<link rel="stylesheet" href="skins/plastic/style.css" type="text/css" media="screen" />
         
+<?php ob_end_flush(); ?>

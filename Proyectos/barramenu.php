@@ -36,7 +36,7 @@
     <li><a href="#"><?php if($_SESSION["idioma"]=="es"){echo "Herramientas";}else{ echo "Tools"; }?></a>
         <ul>
             <li><a href="CambiarIdioma.php"><span><?php if($_SESSION["idioma"]=="es"){echo "Cambiar idioma";}else{ echo "Change language"; }?></span></a></li>
-            <li><a href="ManualProgramador.pdf"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
+            <li><a href="ManualUsuario.pdf"><?php if($_SESSION["idioma"]=="es"){echo "Ayuda";}else{ echo "Help"; }?></a></li>
             <li><a href="http://www.gestionconstruccion.info"><span> <?php if($_SESSION["idioma"]=="es"){echo "Nosotros";}else{ echo "About us"; }?></span></a></li>
         </ul>
     </li>

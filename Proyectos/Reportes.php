@@ -1,9 +1,9 @@
+<?php include("header.php") ?>
 <!DOCTYPE  html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Inicio de Sesión ::: Gestión de Construcción</title>
-        <?php include("header.php") ?>
         <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
         <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
     </head>
@@ -45,6 +45,10 @@
 		<td>Reporte de Personal</td>
 		<td><a href="ReportePersonal.php">Personal</a></td>
 	</tr>
+    <tr>
+        <td>Reporte Costo Proyecto</td>
+        <td><a href="ReporteCostoProyectos.php">Costo Proyecto</a></td>
+    </tr>
 </table></li>
 
                 </ul>
