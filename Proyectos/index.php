@@ -84,13 +84,17 @@ mysql_query("SET NAMES 'UTF8'")
         
         <!-- SKIN -->
         <link rel="stylesheet" href="skins/plastic/style.css" type="text/css" media="screen" />
-        
-
+        <?php 
+        if (!isset($_SESSION["autenticado"])) {
+        ?>
         <script type="text/javascript" src="lib/alertify.js"></script>
         <link rel="stylesheet" href="themes/alertify.core.css" />
         <link rel="stylesheet" href="themes/alertify.default.css" />
         <script src="lib/eventos.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <?php
+        }
+        ?>
         <script type="text/javascript">
             function cambiaridioma(lang){
                 //alert(lang);

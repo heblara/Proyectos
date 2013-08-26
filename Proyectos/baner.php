@@ -25,7 +25,6 @@
         <!-- Slider -->
         <div id="slider-block">
             <div id="slider-holder">	<!-- headline -->
-
                 <!-- ENDS headline -->
                 <!-- Slider -->
                 <div id="slider-block">
