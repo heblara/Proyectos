@@ -1,4 +1,5 @@
 <?php
+include("seguridad.php");
 @session_start();
 require("data.php");
 mysql_query("SET NAMES 'UTF8'")

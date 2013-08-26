@@ -1,5 +1,4 @@
 <?php
-
 require("data.php");
 ob_start();
 $respuesta = new stdClass();
@@ -14,7 +13,6 @@ if($txtusuario=="" || $txtpass==""){
     $query = mysql_query($q, $connection);
     $usuario = "";
     $pass = "";
-
     while ($row = mysql_fetch_array($query)) {
         $usuario = $row['Usuario'];
         $pass = $row['Contrasena'];
